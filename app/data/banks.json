@@ -1,0 +1,137 @@
+{
+  "_meta": {
+    "unit": "billion EUR",
+    "fiscal_year": 2024,
+    "sources": [
+      "Individual bank 2024 annual reports",
+      "Banco de España Financial Stability Report 2024/2",
+      "SNL Financial / S&P Capital IQ"
+    ],
+    "notes": "Total assets and CET1 are unconsolidated / group-level at year-end 2024. BdE is the Spanish branch of the Eurosystem and holds Spanish sovereign bonds acquired under APP/PEPP on the ECB's behalf.",
+    "last_updated": "2026-04-20",
+    "auto_refresh": false
+  },
+  "banks": [
+    {
+      "id": "bde",
+      "name": "Banco de España",
+      "type": "national_central_bank",
+      "total_assets_bn_eur": 920,
+      "sovereign_bonds_held_bn_eur": 420,
+      "reserves_issued_to_banks_bn_eur": 210,
+      "employees": 3450
+    },
+    {
+      "id": "santander",
+      "name": "Santander",
+      "type": "g_sib",
+      "total_assets_bn_eur": 1840,
+      "cet1_bn_eur": 89,
+      "cet1_ratio_pct": 12.8,
+      "net_income_2024_bn_eur": 12.6,
+      "employees": 212000,
+      "global_rank": 16
+    },
+    {
+      "id": "bbva",
+      "name": "BBVA",
+      "type": "g_sib",
+      "total_assets_bn_eur": 775,
+      "cet1_bn_eur": 54,
+      "cet1_ratio_pct": 12.9,
+      "net_income_2024_bn_eur": 10.1,
+      "employees": 121000
+    },
+    {
+      "id": "caixabank",
+      "name": "CaixaBank",
+      "type": "significant_institution",
+      "total_assets_bn_eur": 613,
+      "cet1_bn_eur": 30,
+      "cet1_ratio_pct": 12.2,
+      "net_income_2024_bn_eur": 5.8,
+      "employees": 44500
+    },
+    {
+      "id": "sabadell",
+      "name": "Banco Sabadell",
+      "type": "significant_institution",
+      "total_assets_bn_eur": 235,
+      "cet1_bn_eur": 13,
+      "cet1_ratio_pct": 13.2,
+      "net_income_2024_bn_eur": 1.8,
+      "employees": 19200
+    },
+    {
+      "id": "bankinter",
+      "name": "Bankinter",
+      "type": "significant_institution",
+      "total_assets_bn_eur": 113,
+      "cet1_bn_eur": 6.2,
+      "cet1_ratio_pct": 12.5,
+      "net_income_2024_bn_eur": 0.95,
+      "employees": 6400
+    },
+    {
+      "id": "unicaja",
+      "name": "Unicaja Banco",
+      "type": "significant_institution",
+      "total_assets_bn_eur": 95,
+      "cet1_bn_eur": 6,
+      "cet1_ratio_pct": 14.9,
+      "net_income_2024_bn_eur": 0.51,
+      "employees": 6200
+    },
+    {
+      "id": "kutxabank",
+      "name": "Kutxabank",
+      "type": "significant_institution",
+      "total_assets_bn_eur": 70,
+      "cet1_bn_eur": 5.5,
+      "cet1_ratio_pct": 17.6,
+      "net_income_2024_bn_eur": 0.55,
+      "employees": 3800
+    },
+    {
+      "id": "ibercaja",
+      "name": "Ibercaja Banco",
+      "type": "less_significant",
+      "total_assets_bn_eur": 54,
+      "cet1_bn_eur": 3.1,
+      "cet1_ratio_pct": 12.9,
+      "net_income_2024_bn_eur": 0.31,
+      "employees": 4700
+    },
+    {
+      "id": "abanca",
+      "name": "Abanca",
+      "type": "less_significant",
+      "total_assets_bn_eur": 100,
+      "cet1_bn_eur": 4.8,
+      "cet1_ratio_pct": 13.1,
+      "net_income_2024_bn_eur": 0.68,
+      "employees": 6100
+    },
+    {
+      "id": "cajamar",
+      "name": "Grupo Cooperativo Cajamar",
+      "type": "less_significant",
+      "total_assets_bn_eur": 54,
+      "cet1_bn_eur": 2.9,
+      "cet1_ratio_pct": 13.6,
+      "net_income_2024_bn_eur": 0.17,
+      "employees": 5600
+    },
+    {
+      "id": "otros",
+      "name": "Autres banques espagnoles",
+      "type": "aggregate",
+      "total_assets_bn_eur": 120,
+      "cet1_bn_eur": 8.5,
+      "cet1_ratio_pct": 13.5,
+      "net_income_2024_bn_eur": 1.4,
+      "employees": 18000,
+      "notes": "Aggregate of smaller Spanish banks + foreign branches operating domestically"
+    }
+  ]
+}

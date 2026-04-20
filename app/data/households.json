@@ -1,0 +1,42 @@
+{
+  "_meta": {
+    "unit": "billion EUR",
+    "fiscal_year": 2024,
+    "sources": [
+      "INE — Encuesta Continua de Hogares + Contabilidad Nacional",
+      "Banco de España — Encuesta Financiera de las Familias",
+      "Eurostat — HFCS (Household Finance and Consumption Survey)"
+    ],
+    "last_updated": "2026-04-20",
+    "auto_refresh": false
+  },
+  "aggregate": {
+    "number_of_households_millions": 18.8,
+    "average_household_size": 2.5,
+    "population_millions": 48.7
+  },
+  "annual_flows": {
+    "total_disposable_income_bn_eur": 820,
+    "from_wages_bn_eur": 585,
+    "from_self_employment_bn_eur": 95,
+    "from_state_transfers_bn_eur": 385,
+    "from_financial_income_bn_eur": 55,
+    "to_consumption_bn_eur": 760,
+    "to_savings_bn_eur": 60,
+    "savings_rate_pct": 7.3,
+    "to_taxes_bn_eur": 165,
+    "to_loan_repayment_bn_eur": 85
+  },
+  "stocks": {
+    "total_wealth_bn_eur": 8240,
+    "real_estate_bn_eur": 5650,
+    "deposits_at_banks_bn_eur": 975,
+    "equities_and_funds_bn_eur": 905,
+    "pensions_and_insurance_bn_eur": 420,
+    "cash_bn_eur": 120,
+    "total_debt_bn_eur": 710,
+    "mortgage_debt_bn_eur": 510,
+    "consumer_credit_bn_eur": 115
+  },
+  "debt_to_income_pct": 86.6
+}

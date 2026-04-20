@@ -1,0 +1,53 @@
+{
+  "_meta": {
+    "unit": "billion EUR",
+    "as_of": "2024-12-31",
+    "sources": [
+      "ESRB — EU Non-bank Financial Intermediation Risk Monitor 2025",
+      "ECB Financial Stability Review (November 2025)",
+      "ICMA European Repo Market Survey 2024",
+      "ESMA Statistical Report: EU MMFs 2024"
+    ],
+    "notes": "NBFI = Non-Bank Financial Intermediation. The 'shadow money' layer not captured in M3. EU-wide figures unless marked Spain-only.",
+    "last_updated": "2026-04-20",
+    "auto_refresh": false
+  },
+  "eu_aggregate": {
+    "total_nbfi_assets_bn_eur": 50700,
+    "nbfi_as_pct_of_gdp": 380,
+    "breakdown": {
+      "investment_funds_bn_eur": 22000,
+      "insurance_corporations_bn_eur": 10100,
+      "pension_funds_bn_eur": 4200,
+      "other_financial_institutions_bn_eur": 14400
+    }
+  },
+  "money_market_funds_europe": {
+    "total_aum_bn_eur": 1800,
+    "euro_denominated_aum_bn_eur": 650,
+    "usd_denominated_in_europe_bn_eur": 1050,
+    "gbp_denominated_bn_eur": 100,
+    "notes": "MMF shares function as cash-equivalents for corporate treasurers; excluded from M3"
+  },
+  "repo_market_europe": {
+    "daily_turnover_bn_eur": 1800,
+    "outstanding_bn_eur": 10500,
+    "yoy_growth_pct": 38,
+    "notes": "Rehypothecation chains create money-like claims; excluded from M3"
+  },
+  "stablecoins": {
+    "global_market_cap_bn_eur": 190,
+    "euro_denominated_bn_eur": 1.2,
+    "notes": "Euro stablecoins are tiny (~€1B) under MiCA. Dollar-pegged dominate (~€185B). Total crypto held by Eurozone residents is larger but not all is money-like."
+  },
+  "private_credit_europe": {
+    "aum_bn_eur": 520,
+    "yoy_growth_pct": 22,
+    "notes": "Blackstone, Apollo, Ares, Intermediate Capital — direct lending to mid-market firms, bypassing banks"
+  },
+  "spain_specific": {
+    "spanish_investment_fund_aum_bn_eur": 380,
+    "spanish_pension_fund_aum_bn_eur": 130,
+    "spanish_insurance_aum_bn_eur": 305
+  }
+}

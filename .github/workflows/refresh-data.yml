@@ -1,0 +1,37 @@
+name: Refresh data
+
+on:
+  schedule:
+    # Run daily at 07:00 UTC (Europe morning, after ECB's early releases)
+    - cron: "0 7 * * *"
+  workflow_dispatch:  # allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Refresh data from ECB SDW
+        run: node scripts/refresh-data.mjs
+
+      - name: Commit if changed
+        run: |
+          git config user.name "data-bot"
+          git config user.email "data-bot@users.noreply.github.com"
+          git add app/data/*.json
+          if git diff --staged --quiet; then
+            echo "No data changes."
+          else
+            git commit -m "chore: refresh ECB live data ($(date -u +%Y-%m-%d))"
+            git push
+          fi

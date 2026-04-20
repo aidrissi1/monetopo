@@ -1,0 +1,55 @@
+{
+  "_meta": {
+    "unit": "billion EUR",
+    "fiscal_year": 2024,
+    "sources": [
+      "IGAE (Intervención General de la Administración del Estado)",
+      "Banco de España — Estadísticas de deuda pública",
+      "INE — Contabilidad Nacional trimestral",
+      "Ministerio de Hacienda — Presupuestos Generales del Estado 2024"
+    ],
+    "last_updated": "2026-04-20",
+    "auto_refresh": false
+  },
+  "debt": {
+    "total_public_debt_bn_eur": 1615,
+    "debt_to_gdp_pct": 102.3,
+    "held_by_eurosystem_bn_eur": 420,
+    "held_by_spanish_banks_bn_eur": 225,
+    "held_by_foreign_investors_bn_eur": 680,
+    "held_by_insurance_and_pensions_bn_eur": 185,
+    "held_by_households_and_other_bn_eur": 105
+  },
+  "annual_flows": {
+    "total_tax_revenue_bn_eur": 297,
+    "tax_from_households_bn_eur": 165,
+    "tax_from_companies_bn_eur": 132,
+    "breakdown_tax": {
+      "income_tax_irpf_bn_eur": 120,
+      "corporate_tax_bn_eur": 35,
+      "vat_iva_bn_eur": 85,
+      "social_security_contributions_bn_eur": 155,
+      "other_indirect_taxes_bn_eur": 45,
+      "_notes": "Social security contributions split ~60% employer (companies) / 40% employee (households)"
+    },
+    "total_spending_bn_eur": 610,
+    "spending_to_households_bn_eur": 385,
+    "spending_to_companies_bn_eur": 155,
+    "breakdown_spending": {
+      "pensions_bn_eur": 195,
+      "healthcare_bn_eur": 85,
+      "education_bn_eur": 55,
+      "unemployment_and_social_bn_eur": 55,
+      "public_procurement_bn_eur": 95,
+      "infrastructure_bn_eur": 35,
+      "subsidies_to_companies_bn_eur": 25,
+      "interest_on_debt_bn_eur": 38,
+      "other_bn_eur": 27
+    },
+    "deficit_bn_eur": 52,
+    "deficit_to_gdp_pct": 3.3,
+    "new_bond_issuance_bn_eur": 260,
+    "bond_redemptions_bn_eur": 208
+  },
+  "gdp_bn_eur": 1580
+}

@@ -1,0 +1,40 @@
+{
+  "_meta": {
+    "unit": "billion EUR",
+    "fiscal_year": 2024,
+    "sources": [
+      "INE — Directorio Central de Empresas (DIRCE) 2024",
+      "Banco de España — Central de Balances",
+      "INE — Contabilidad Nacional Trimestral"
+    ],
+    "last_updated": "2026-04-20",
+    "auto_refresh": false
+  },
+  "aggregate": {
+    "number_of_firms_millions": 3.4,
+    "sme_share_pct": 99.8,
+    "large_firms_count": 5200
+  },
+  "annual_flows": {
+    "gross_value_added_bn_eur": 1420,
+    "to_wages_bn_eur": 585,
+    "to_taxes_bn_eur": 132,
+    "to_investment_bn_eur": 305,
+    "to_profit_bn_eur": 310,
+    "to_bank_loan_repayment_bn_eur": 195,
+    "new_bank_credit_drawn_bn_eur": 210,
+    "public_procurement_revenue_bn_eur": 95
+  },
+  "stocks": {
+    "total_bank_debt_bn_eur": 860,
+    "corporate_bonds_outstanding_bn_eur": 350,
+    "equity_market_cap_spanish_listed_bn_eur": 785,
+    "deposits_at_banks_bn_eur": 420
+  },
+  "sector_breakdown_gva_pct": {
+    "services": 73.5,
+    "industry": 18.8,
+    "construction": 6.2,
+    "agriculture": 2.5
+  }
+}

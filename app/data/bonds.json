@@ -1,0 +1,40 @@
+{
+  "_meta": {
+    "unit": "billion EUR",
+    "as_of": "2024-12-31",
+    "sources": [
+      "Banco de España — Estadísticas de deuda pública",
+      "Tesoro Público — Informe Mensual",
+      "ECB SDW — securities holdings statistics"
+    ],
+    "last_updated": "2026-04-20",
+    "auto_refresh": true
+  },
+  "spanish_sovereign_debt": {
+    "total_outstanding_bn_eur": 1615,
+    "holdings_by_holder": {
+      "eurosystem_apppepp_bn_eur": 420,
+      "spanish_commercial_banks_bn_eur": 225,
+      "foreign_investors_bn_eur": 680,
+      "spanish_insurance_and_pensions_bn_eur": 185,
+      "spanish_households_and_other_bn_eur": 105
+    },
+    "avg_maturity_years": 7.8,
+    "avg_yield_10y_pct": 3.38
+  },
+  "_holdings_by_bank_approximate_bn_eur": {
+    "_notes": "Per-bank domestic sovereign holdings are not always public; these are estimates scaled by balance sheet size from Pillar 3 disclosures.",
+    "bde": 420,
+    "santander": 42,
+    "bbva": 34,
+    "caixabank": 48,
+    "sabadell": 22,
+    "bankinter": 11,
+    "unicaja": 14,
+    "kutxabank": 8,
+    "ibercaja": 8,
+    "abanca": 18,
+    "cajamar": 10,
+    "otros": 10
+  }
+}
