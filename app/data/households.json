@@ -8,7 +8,7 @@
       "Eurostat — HFCS (Household Finance and Consumption Survey)"
     ],
     "last_updated": "2026-04-20",
-    "auto_refresh": false
+    "auto_refresh": true
   },
   "aggregate": {
     "number_of_households_millions": 18.8,
@@ -38,5 +38,9 @@
     "mortgage_debt_bn_eur": 510,
     "consumer_credit_bn_eur": 115
   },
-  "debt_to_income_pct": 86.6
+  "debt_to_income_pct": 86.6,
+  "unemployment_rate_pct": {
+    "rate_pct": 9.8,
+    "as_of": "2026-02"
+  }
 }

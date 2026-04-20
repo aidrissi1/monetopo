@@ -9,11 +9,11 @@
       "Ministerio de Hacienda — Presupuestos Generales del Estado 2024"
     ],
     "last_updated": "2026-04-20",
-    "auto_refresh": false
+    "auto_refresh": true
   },
   "debt": {
-    "total_public_debt_bn_eur": 1615,
-    "debt_to_gdp_pct": 102.3,
+    "total_public_debt_bn_eur": 1709,
+    "debt_to_gdp_pct": 101.3,
     "held_by_eurosystem_bn_eur": 420,
     "held_by_spanish_banks_bn_eur": 225,
     "held_by_foreign_investors_bn_eur": 680,
@@ -51,5 +51,5 @@
     "new_bond_issuance_bn_eur": 260,
     "bond_redemptions_bn_eur": 208
   },
-  "gdp_bn_eur": 1580
+  "gdp_bn_eur": 1687
 }

@@ -34,7 +34,7 @@
   "monetary_aggregates_eurozone": {
     "m0_base_money_bn_eur": 4750,
     "m1_bn_eur": 11400,
-    "m3_bn_eur": 16100
+    "m3_bn_eur": 17370
   },
   "policy_rates_pct": {
     "deposit_facility": 2,
@@ -47,5 +47,10 @@
     "national_governors": 20,
     "total_seats": 26,
     "rotating_votes": 19
+  },
+  "_last_m3_date": "2026-02",
+  "hicp_eurozone_annual_pct": {
+    "hicp_annual_pct": 1.9,
+    "as_of": "2025-12"
   }
 }

@@ -129,6 +129,11 @@ function rowsForEntity(id: string): { title: string; rows: Row[] } | null {
           value: fmt(bs.liabilities.banknotes_in_circulation_bn_eur),
         },
         { label: "Taux de dépôt", value: `${ecbData.policy_rates_pct.deposit_facility}%` },
+        { label: "Taux MRO", value: `${ecbData.policy_rates_pct.main_refinancing_operations}%` },
+        { label: "M3 zone euro", value: fmt(ecbData.monetary_aggregates_eurozone.m3_bn_eur) },
+        ...(ecbData.hicp_eurozone_annual_pct
+          ? [{ label: "Inflation HICP (a/a)", value: `${ecbData.hicp_eurozone_annual_pct.hicp_annual_pct}%` }]
+          : []),
       ],
     };
   }
@@ -145,6 +150,7 @@ function rowsForEntity(id: string): { title: string; rows: Row[] } | null {
         { label: "Dépenses publiques", value: `${fmt(f.total_spending_bn_eur)}/an` },
         { label: "Déficit", value: `${fmt(f.deficit_bn_eur)} (${f.deficit_to_gdp_pct}% PIB)` },
         { label: "Intérêts sur la dette", value: `${fmt(f.breakdown_spending.interest_on_debt_bn_eur)}/an` },
+        { label: "PIB", value: fmt(stateData.gdp_bn_eur) },
       ],
     };
   }
@@ -159,7 +165,13 @@ function rowsForEntity(id: string): { title: string; rows: Row[] } | null {
         { label: "Détenu par banques espagnoles", value: fmt(h.spanish_commercial_banks_bn_eur) },
         { label: "Détenu par investisseurs étrangers", value: fmt(h.foreign_investors_bn_eur) },
         { label: "Détenu par assurance + retraites", value: fmt(h.spanish_insurance_and_pensions_bn_eur) },
-        { label: "Rendement 10 ans", value: `${bondsData.spanish_sovereign_debt.avg_yield_10y_pct}%` },
+        { label: "Rendement 10 ans Espagne", value: `${bondsData.spanish_sovereign_debt.avg_yield_10y_pct}%` },
+        ...(bondsData.german_bund_10y_pct !== undefined
+          ? [{ label: "Rendement 10 ans Allemagne (réf.)", value: `${bondsData.german_bund_10y_pct}%` }]
+          : []),
+        ...(bondsData.spread_spain_germany_10y_bps !== undefined
+          ? [{ label: "Spread Espagne-Bund", value: `${bondsData.spread_spain_germany_10y_bps} pb` }]
+          : []),
       ],
     };
   }
@@ -179,6 +191,9 @@ function rowsForEntity(id: string): { title: string; rows: Row[] } | null {
         { label: "Taux d'épargne", value: `${h.savings_rate_pct}%` },
         { label: "Patrimoine total", value: fmt(s.total_wealth_bn_eur) },
         { label: "Dette (hypothécaire + conso)", value: fmt(s.total_debt_bn_eur) },
+        ...(householdsData.unemployment_rate_pct
+          ? [{ label: "Taux de chômage", value: `${householdsData.unemployment_rate_pct.rate_pct}%` }]
+          : []),
       ],
     };
   }
