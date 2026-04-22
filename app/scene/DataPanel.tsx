@@ -8,6 +8,7 @@ import householdsData from "../data/households.json";
 import firmsData from "../data/firms.json";
 import ecbData from "../data/ecb.json";
 import bondsData from "../data/bonds.json";
+import nbfiData from "../data/nbfi.json";
 import {
   AGGREGATE_CET1_BN_EUR,
   AGGREGATE_BANK_ASSETS_BN_EUR,
@@ -49,6 +50,11 @@ function freshnessForEntity(id: string): Freshness | null {
     return {
       lastUpdated: householdsData._meta?.last_updated ?? "",
       autoRefresh: householdsData._meta?.auto_refresh ?? false,
+    };
+  if (id === "shadow_money")
+    return {
+      lastUpdated: nbfiData._meta?.last_updated ?? "",
+      autoRefresh: nbfiData._meta?.auto_refresh ?? false,
     };
   if (id === "entreprises")
     return {
@@ -194,6 +200,26 @@ function rowsForEntity(id: string): { title: string; rows: Row[] } | null {
         ...(householdsData.unemployment_rate_pct
           ? [{ label: "Taux de chômage", value: `${householdsData.unemployment_rate_pct.rate_pct}%` }]
           : []),
+      ],
+    };
+  }
+
+  if (id === "shadow_money") {
+    const eu = nbfiData.eu_aggregate;
+    const mmf = nbfiData.money_market_funds_europe;
+    const repo = nbfiData.repo_market_europe;
+    const sc = nbfiData.stablecoins;
+    const pc = nbfiData.private_credit_europe;
+    return {
+      title: "Finance parallèle (NBFI, zone UE)",
+      rows: [
+        { label: "Total NBFI UE", value: fmt(eu.total_nbfi_assets_bn_eur) },
+        { label: "En % du PIB UE", value: `${eu.nbfi_as_pct_of_gdp}%` },
+        { label: "Fonds monétaires (euro)", value: fmt(mmf.euro_denominated_aum_bn_eur) },
+        { label: "Repo (encours)", value: fmt(repo.outstanding_bn_eur) },
+        { label: "Repo (tournover quotidien)", value: fmt(repo.daily_turnover_bn_eur) },
+        { label: "Stablecoins (global)", value: fmt(sc.global_market_cap_bn_eur) },
+        { label: "Crédit privé (Europe)", value: fmt(pc.aum_bn_eur) },
       ],
     };
   }

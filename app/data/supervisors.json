@@ -1,0 +1,65 @@
+{
+  "_meta": {
+    "as_of": "2026-04-22",
+    "schema_version": 1,
+    "sources": [
+      "ECB Banking Supervision — ssm.europa.eu",
+      "Single Resolution Board — srb.europa.eu",
+      "Fondo de Garantía de Depósitos — fgd.es",
+      "CNMV — cnmv.es",
+      "Dirección General de Seguros y Fondos de Pensiones — dgsfp.mineco.es"
+    ],
+    "notes": "Tier-2 supervisors + backstops. Currently missing from the scene — banks rendered as autonomous actors, which they are not. Each supervisor has a 'scope' of entities it oversees for drawing supervision threads."
+  },
+  "supervisors": [
+    {
+      "id": "ssm",
+      "name": "SSM · Single Supervisory Mechanism",
+      "short": "SSM",
+      "role": "Supervision prudentielle des banques systémiques. Intégré à la BCE depuis 2014. Remplace la BdE pour les G-SIBs.",
+      "scope": [
+        "santander", "bbva", "caixabank", "sabadell",
+        "bankinter", "unicaja", "ibercaja", "kutxabank", "abanca", "cajamar"
+      ],
+      "origin": "EU"
+    },
+    {
+      "id": "srb",
+      "name": "SRB · Single Resolution Board",
+      "short": "SRB",
+      "role": "Résolution ordonnée des banques en difficulté. Gère le Single Resolution Fund (SRF). A résolu Banco Popular en 2017.",
+      "scope": ["santander", "bbva", "caixabank", "sabadell"],
+      "origin": "EU"
+    },
+    {
+      "id": "fgd",
+      "name": "FGD · Fondo de Garantía de Depósitos",
+      "short": "FGD",
+      "role": "Assurance des dépôts · €100 000 par déposant · financé par cotisations des banques. Le filet de sécurité retail sans lequel le système bancaire n'est pas stable.",
+      "scope": [
+        "santander", "bbva", "caixabank", "sabadell",
+        "bankinter", "unicaja", "ibercaja", "kutxabank", "abanca", "cajamar"
+      ],
+      "origin": "ES"
+    },
+    {
+      "id": "cnmv",
+      "name": "CNMV · Comisión Nacional del Mercado de Valores",
+      "short": "CNMV",
+      "role": "Régulateur des marchés de capitaux espagnols. Enregistre les participations significatives, supervise les SOCIMIs, les fonds, les émissions.",
+      "scope": [
+        "santander", "bbva", "caixabank", "sabadell",
+        "bankinter", "unicaja"
+      ],
+      "origin": "ES"
+    },
+    {
+      "id": "dgsfp",
+      "name": "DGSFP · Dirección General de Seguros",
+      "short": "DGSFP",
+      "role": "Régulateur assurance + fonds de pension en Espagne. Supervise Mapfre, Mutua, Santalucía, fonds de retraite privés.",
+      "scope": [],
+      "origin": "ES"
+    }
+  ]
+}

@@ -7,6 +7,9 @@ import { MacroScene } from "../scene/MacroScene";
 import { CameraController } from "../scene/CameraController";
 import { ControlDesk } from "../scene/ControlDesk";
 import { DataPanel } from "../scene/DataPanel";
+import { HoverTooltip } from "../scene/HoverTooltip";
+import { TracerSummary } from "../scene/TracerSummary";
+import { DetailPanel } from "../scene/DetailPanel";
 import {
   DEFAULT_CAMERA_POSITION,
   DEFAULT_CAMERA_TARGET,
@@ -36,6 +39,9 @@ export default function Scene() {
       </Canvas>
       <ControlDesk />
       <DataPanel />
+      <HoverTooltip />
+      <TracerSummary />
+      <DetailPanel />
     </div>
   );
 }

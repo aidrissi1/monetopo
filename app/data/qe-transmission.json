@@ -1,0 +1,78 @@
+{
+  "_meta": {
+    "as_of": "2026-04-22",
+    "schema_version": 1,
+    "sources": [
+      "ECB Working Paper Series — on PEPP + APP portfolio rebalancing transmission (TODO: cite specific papers when populated)",
+      "Banco de España — Financial Stability Report, QE transmission sections",
+      "BIS Quarterly Review articles on unconventional monetary policy"
+    ],
+    "notes": "QE transmission presets — these ratios are the core of the interactive tracer. Each preset answers 'when the ECB prints €X, where does €X land?'. Initial ratios below are ILLUSTRATIVE pedagogical defaults — refine from ECB/BdE working papers and update the as_of + source for each preset. The ordering (bank_reserves largest) reflects the well-documented empirical finding that QE liquidity mostly sits as excess reserves and works via portfolio-rebalancing + yield-compression rather than direct new lending."
+  },
+  "presets": [
+    {
+      "id": "pepp_2020",
+      "label": "PEPP · 2020-2022",
+      "context": "Pandemic Emergency Purchase Programme. Peak QE intensity.",
+      "verified": false,
+      "source": "TODO: cite specific ECB WP on PEPP transmission",
+      "ratios": {
+        "bank_reserves":    0.70,
+        "asset_prices":     0.18,
+        "fiscal_channel":   0.08,
+        "real_credit":      0.04
+      },
+      "explanation": "Most of the printed euros landed as excess reserves at national central banks. The rest transmitted primarily through portfolio rebalancing — allocators rotated into risk assets, pushing up equity + real-estate prices. Fiscal + real-credit channels were comparatively small."
+    },
+    {
+      "id": "app_2015_2018",
+      "label": "APP · 2015-2018",
+      "context": "Asset Purchase Programme — the original Draghi 'whatever it takes' era QE.",
+      "verified": false,
+      "source": "TODO: cite specific ECB WP on APP transmission",
+      "ratios": {
+        "bank_reserves":    0.75,
+        "asset_prices":     0.15,
+        "fiscal_channel":   0.06,
+        "real_credit":      0.04
+      },
+      "explanation": "Similar dominant pattern — excess reserves expanded massively, asset-price channel was the most material transmission, fiscal channel helped peripheral sovereigns refinance cheaply."
+    },
+    {
+      "id": "normalization_2023",
+      "label": "Normalisation · 2022-2024",
+      "context": "QT era. ECB shrinks balance sheet — transmission reversal.",
+      "verified": false,
+      "source": "TODO: BdE FSR 2024/2 section on QT transmission",
+      "ratios": {
+        "bank_reserves":    0.65,
+        "asset_prices":     0.20,
+        "fiscal_channel":   0.10,
+        "real_credit":      0.05
+      },
+      "explanation": "Sign reverses — reserve withdrawal, yield widening, allocator rebalancing back out of risk. Real-economy channel slightly larger because higher rates bite on credit more directly."
+    }
+  ],
+  "channels": {
+    "bank_reserves": {
+      "label": "Réserves bancaires · BdE",
+      "description": "Reserves stay parked at the central bank — no onward transmission. Banks earn the Deposit Facility Rate; they don't lend these reserves out (Werner / BoE 2014).",
+      "color": "#5fb5ff"
+    },
+    "asset_prices": {
+      "label": "Prix des actifs · allocateurs",
+      "description": "Portfolio rebalancing — allocators sell bonds to ECB, rotate into equity + real estate, inflate asset prices. Benefits whoever owns assets: pensioners, wealthy households, family offices.",
+      "color": "#e0b048"
+    },
+    "fiscal_channel": {
+      "label": "Canal budgétaire · État",
+      "description": "Compressed sovereign yields let the state refinance cheaply. More fiscal space → spending reaches households + firms via transfers, salaries, procurement.",
+      "color": "#5dd39e"
+    },
+    "real_credit": {
+      "label": "Crédit à l'économie · ménages + entreprises",
+      "description": "New lending to real economy. Smallest channel — bank lending is capital-constrained, not reserve-constrained.",
+      "color": "#ff9055"
+    }
+  }
+}

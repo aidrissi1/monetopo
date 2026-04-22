@@ -1,0 +1,60 @@
+{
+  "_meta": {
+    "as_of": "2026-04-22",
+    "schema_version": 1,
+    "sources": [
+      "BME — Bolsas y Mercados Españoles · IBEX-35 composition",
+      "Company annual reports 2024-2025"
+    ],
+    "auto_refresh": false,
+    "notes": "IBEX-35 firms used as targets for ownership-thread visualization. Registry only — no holdings here. Composition shifts periodically (reviewed twice yearly by BME); this list reflects core constituents but may include rotated names."
+  },
+  "firms": [
+    {"id": "santander",      "name": "Banco Santander",      "sector": "banking"},
+    {"id": "bbva",           "name": "BBVA",                  "sector": "banking"},
+    {"id": "caixabank",      "name": "CaixaBank",             "sector": "banking"},
+    {"id": "sabadell",       "name": "Banco Sabadell",        "sector": "banking"},
+    {"id": "bankinter",      "name": "Bankinter",             "sector": "banking"},
+    {"id": "unicaja-banco",  "name": "Unicaja Banco",         "sector": "banking"},
+
+    {"id": "iberdrola",      "name": "Iberdrola",             "sector": "utilities_energy"},
+    {"id": "endesa",         "name": "Endesa",                "sector": "utilities_energy"},
+    {"id": "naturgy",        "name": "Naturgy Energy Group",  "sector": "utilities_energy"},
+    {"id": "repsol",         "name": "Repsol",                "sector": "utilities_energy"},
+    {"id": "enagas",         "name": "Enagás",                "sector": "utilities_energy"},
+    {"id": "redeia",         "name": "Redeia (Red Eléctrica)","sector": "utilities_energy"},
+    {"id": "solaria",        "name": "Solaria Energía",       "sector": "utilities_energy"},
+    {"id": "acciona-energia","name": "Acciona Energía",       "sector": "utilities_energy"},
+
+    {"id": "acs",            "name": "ACS (Actividades Constr.)", "sector": "infrastructure_construction"},
+    {"id": "ferrovial",      "name": "Ferrovial",             "sector": "infrastructure_construction"},
+    {"id": "acciona",        "name": "Acciona",               "sector": "infrastructure_construction"},
+    {"id": "sacyr",          "name": "Sacyr",                 "sector": "infrastructure_construction"},
+    {"id": "aena",           "name": "Aena",                  "sector": "infrastructure_construction"},
+
+    {"id": "telefonica",     "name": "Telefónica",            "sector": "telecom"},
+    {"id": "cellnex",        "name": "Cellnex Telecom",       "sector": "telecom"},
+
+    {"id": "inditex",        "name": "Inditex (Zara)",        "sector": "retail_consumer"},
+    {"id": "puig",           "name": "Puig Brands",           "sector": "retail_consumer"},
+    {"id": "melia",          "name": "Meliá Hotels",          "sector": "retail_consumer"},
+    {"id": "iag",            "name": "IAG (Iberia/British)",  "sector": "retail_consumer"},
+
+    {"id": "arcelormittal",  "name": "ArcelorMittal",         "sector": "industrial"},
+    {"id": "acerinox",       "name": "Acerinox",              "sector": "industrial"},
+    {"id": "cie-automotive", "name": "CIE Automotive",        "sector": "industrial"},
+    {"id": "fluidra",        "name": "Fluidra",               "sector": "industrial"},
+
+    {"id": "grifols",        "name": "Grifols",               "sector": "healthcare_pharma"},
+    {"id": "rovi",           "name": "Laboratorios Rovi",     "sector": "healthcare_pharma"},
+
+    {"id": "amadeus",        "name": "Amadeus IT Group",      "sector": "tech_services"},
+    {"id": "indra",          "name": "Indra Sistemas",        "sector": "tech_services"},
+    {"id": "logista",        "name": "Logista",               "sector": "tech_services"},
+
+    {"id": "mapfre-firm",    "name": "Mapfre",                "sector": "insurance"},
+
+    {"id": "merlin-prop",    "name": "Merlin Properties",     "sector": "real_estate"},
+    {"id": "colonial-firm",  "name": "Inmobiliaria Colonial", "sector": "real_estate"}
+  ]
+}

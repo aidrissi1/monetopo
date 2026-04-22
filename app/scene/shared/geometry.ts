@@ -28,12 +28,25 @@ export const ECB_RAY_ORIGIN = new THREE.Vector3(0, ECB_BASE_Y, 0);
 export const ECB_RAY_RADIUS = 0.035;
 export const ECB_REG_PIPE_RADIUS = 0.17;
 
-// State obelisk
+// State cluster — 3 obelisks: Tesoro (central debt issuer) · CCAA (17 regions)
+// · Seguridad Social (pensions + contributions — largest single flow in Spain).
+// STATE_POSITION anchor is kept for backward compat with pipes + tracer targets.
 export const STATE_POSITION = new THREE.Vector3(0, 4, -10);
 export const STATE_SHAFT_SIZE = 2;
 export const STATE_SHAFT_HEIGHT = 5;
 export const STATE_CAP_HEIGHT = 0.7;
 export const STATE_PIPE_RADIUS = 0.11;
+
+// Sub-states — offsets from STATE_POSITION, sized by magnitude of flows
+export const TESORO_POSITION = STATE_POSITION.clone();
+export const CCAA_POSITION = STATE_POSITION.clone().add(new THREE.Vector3(-4.2, -0.4, 0));
+export const SEG_SOC_POSITION = STATE_POSITION.clone().add(new THREE.Vector3(4.4, 0.5, 0));
+
+// Heights reflect comparative flow magnitude
+export const TESORO_HEIGHT = 5;
+export const CCAA_HEIGHT = 3.8;
+export const SEG_SOC_HEIGHT = 6.2;
+export const SUB_STATE_SHAFT_SIZE = 1.6;
 
 // Bond belt
 export const BOND_BELT_Y = 3.7;
@@ -44,6 +57,10 @@ export const BOND_BELT_TUBE = 0.22;
 export const TAX_COLOR = "#b85c5c";
 export const SPENDING_COLOR = "#4a9a6a";
 export const BONDS_COLOR = "#c0a060";
+
+// Return-flow pipes (boxes → banks): deposits + interest on loans
+export const DEPOSITS_COLOR = "#8a96a8";  // muted grey — "money parked at banks"
+export const INTEREST_COLOR = "#d96a4a";  // warm red — "income to banks"
 
 // Default camera
 export const DEFAULT_CAMERA_POSITION: [number, number, number] = [0, 5, 26];

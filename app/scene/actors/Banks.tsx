@@ -2,9 +2,9 @@
 
 import * as THREE from "three";
 import { useMemo } from "react";
-import { Sphere, Cylinder, Html } from "@react-three/drei";
+import { Cylinder, Html } from "@react-three/drei";
 import { CREATORS } from "../shared/creators";
-import type { MoneyCreator } from "../shared/types";
+import type { MoneyCreator, EntityId } from "../shared/types";
 import {
   SOCKET_RADIUS,
   SOCKET_DEPTH,
@@ -12,6 +12,8 @@ import {
 } from "../shared/geometry";
 import { computeRingPositions, quatFromNormal } from "../shared/helpers";
 import { bankRadius, HUB_RADIUS_SCALED } from "../shared/dataScaling";
+import { OpenableSphere } from "./OpenableSphere";
+import { BankInterior } from "./BankInterior";
 
 /**
  * Build a pipe connecting the hub surface to a satellite center,
@@ -74,20 +76,26 @@ function BankLink({
         />
       </Cylinder>
 
+      <OpenableSphere
+        entityId={creator.id as EntityId}
+        center={satellitePosition}
+        radius={radius}
+        color={creator.color}
+        emissive={creator.color}
+        emissiveIntensity={0.3}
+        metalness={0.3}
+        roughness={0.4}
+        openGap={radius * 1.3}
+      >
+        <BankInterior bankId={creator.id} />
+      </OpenableSphere>
+
+      {/* Label floats beyond the sphere surface along the outward direction */}
       <group position={satellitePosition}>
-        <Sphere args={[radius, 48, 48]}>
-          <meshStandardMaterial
-            color={creator.color}
-            metalness={0.3}
-            roughness={0.4}
-            emissive={creator.color}
-            emissiveIntensity={0.25}
-          />
-        </Sphere>
         <Html
           position={direction
             .clone()
-            .multiplyScalar(radius + 0.2)
+            .multiplyScalar(radius + 0.25)
             .toArray()}
           center
           distanceFactor={10}

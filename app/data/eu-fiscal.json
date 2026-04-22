@@ -1,0 +1,47 @@
+{
+  "_meta": {
+    "as_of": "2026-04-22",
+    "schema_version": 1,
+    "sources": [
+      "European Stability Mechanism — esm.europa.eu",
+      "European Investment Bank — eib.org",
+      "Next Generation EU / RRF — commission.europa.eu",
+      "SURE (temporary instrument) — ec.europa.eu"
+    ],
+    "notes": "EU-level fiscal instruments that matter for Spain but are entirely absent from the current scene. NGEU alone gives Spain €140B through 2026 — half a year of national tax revenue. Largest single omission in the fiscal layer."
+  },
+  "entities": [
+    {
+      "id": "eib",
+      "name": "EIB · European Investment Bank",
+      "short": "EIB",
+      "role": "Banque de l'UE pour l'investissement. Prête ~€10B/an en Espagne (infrastructure, PME, transition énergétique).",
+      "targets_flow_to": ["firms", "acciona-energia", "iberdrola", "acs", "cellnex", "redeia"],
+      "annual_eu_flow_bn_eur": 10
+    },
+    {
+      "id": "esm",
+      "name": "ESM · European Stability Mechanism",
+      "short": "ESM",
+      "role": "Fonds de sauvetage de la zone euro. A recapitalisé les banques espagnoles en 2012 (€41B utilisés sur €100B autorisés). Toujours actif comme backstop.",
+      "targets_flow_to": ["bde", "santander", "bbva"],
+      "annual_eu_flow_bn_eur": 0
+    },
+    {
+      "id": "ngeu",
+      "name": "Next Generation EU · RRF",
+      "short": "NGEU",
+      "role": "Plan de relance post-Covid. L'Espagne reçoit €140B sur 2021-2026 (≈ 50% subventions, 50% prêts). La plus grande injection fiscale européenne de la décennie.",
+      "targets_flow_to": ["tesoro", "firms", "menages"],
+      "annual_eu_flow_bn_eur": 28
+    },
+    {
+      "id": "sure",
+      "name": "SURE · Support Unemployment",
+      "short": "SURE",
+      "role": "Instrument temporaire Covid pour financer le chômage partiel. Espagne : €21.3B empruntés entre 2020-2022 à taux européen favorable.",
+      "targets_flow_to": ["tesoro", "menages"],
+      "annual_eu_flow_bn_eur": 0
+    }
+  ]
+}

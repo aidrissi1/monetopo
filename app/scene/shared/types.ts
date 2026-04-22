@@ -31,15 +31,25 @@ export type EntityId =
   | "ibercaja"
   | "abanca"
   | "cajamar"
-  | "otros";
+  | "otros"
+  | "shadow_money";
 
 export type LayerId =
   | "banking_core"      // hub + banks + capital pipes
   | "credit_flows"      // bank→box colored pipes
+  | "return_flows"      // deposits + loan interest (boxes→banks)
   | "circulation"       // Salaires / Consommation
   | "ecb"               // pyramid + 12 rays + 2 reg pipes
   | "state"             // obelisk + tax/spending pipes
-  | "bonds";            // belt + 12 branches + feed pipe
+  | "bonds"             // belt + 12 branches + feed pipe
+  | "shadow"            // NBFI cluster — MMFs, repo, stablecoins, private credit
+  | "allocators"        // Tier-4 allocator dome + IBEX firm cluster
+  | "ownership"         // ownership threads allocator → bank/firm
+  | "common_ownership"  // horizontal Elhauge arcs between co-owned firms
+  | "supervisors"       // Tier-2 supervisory bodies (SSM, SRB, FGD, CNMV, DGSFP)
+  | "eu_fiscal"         // EU fiscal layer (EIB, ESM, NGEU, SURE)
+  | "rating_agencies"   // Tier-0 rotating halo (S&P, Moody's, Fitch, DBRS, Scope)
+  | "payment_rails";    // Tier-3 payment + settlement infrastructure
 
 export interface Entity {
   id: EntityId;

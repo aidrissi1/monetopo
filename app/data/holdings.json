@@ -1,0 +1,332 @@
+{
+  "_meta": {
+    "as_of": "2026-04-22",
+    "schema_version": 1,
+    "sources": [
+      "CNMV — Comisión Nacional del Mercado de Valores · participaciones significativas registry",
+      "Annual reports of Spanish listed firms (significant shareholders sections)",
+      "Norway GPFG — Government Pension Fund Global · annual holdings register (full download)",
+      "Inditex 2024 annual report · ownership structure section",
+      "CaixaBank 2024 annual report · significant shareholders",
+      "Forbes & Bloomberg billionaires lists for family-office holdings"
+    ],
+    "auto_refresh": false,
+    "notes": "Honest holdings registry. Only entries we can cite are populated with pct_held; everything else carries pct_held: null and a TODO source so geometry draws a thin presence thread instead of a width-encoded ownership thread. Family/foundation blocks below are conservative round figures from long-stable public disclosure — verify and refine from CNMV registry before publishing."
+  },
+  "holdings": [
+
+    {
+      "allocator_id": "criteriacaixa",
+      "target_id": "caixabank",
+      "stake_type": "equity_controlling",
+      "pct_held": 32,
+      "as_of": "2024-12-31",
+      "source": "CaixaBank annual report 2024 — significant shareholders section",
+      "notes": "Controlling stake via CriteriaCaixa, the investment vehicle of Fundación bancaria la Caixa. Has been ~30-35% for over a decade."
+    },
+    {
+      "allocator_id": "pontegadea",
+      "target_id": "inditex",
+      "stake_type": "equity_controlling",
+      "pct_held": 59,
+      "as_of": "2024-12-31",
+      "source": "Inditex annual report 2024 — ownership structure",
+      "notes": "Amancio Ortega's family office. Inditex's largest single shareholder. Stake has been around 50-60% for years."
+    },
+    {
+      "allocator_id": "rosp-corunna",
+      "target_id": "inditex",
+      "stake_type": "equity_common",
+      "pct_held": 5,
+      "as_of": "2024-12-31",
+      "source": "Inditex annual report 2024 — ownership structure",
+      "notes": "Sandra Ortega's family office. Round figure — refine from disclosure."
+    },
+
+    {
+      "allocator_id": "criteriacaixa",
+      "target_id": "naturgy",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Naturgy annual report 2024 + CNMV significant shareholders",
+      "notes": "CriteriaCaixa is one of Naturgy's largest shareholders. Refine % from disclosure."
+    },
+    {
+      "allocator_id": "criteriacaixa",
+      "target_id": "telefonica",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Telefónica significant shareholders 2024 + CNMV"
+    },
+    {
+      "allocator_id": "criteriacaixa",
+      "target_id": "cellnex",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Cellnex significant shareholders 2024 + CNMV"
+    },
+
+    {
+      "allocator_id": "corp-financiera-alba",
+      "target_id": "naturgy",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Corporación Financiera Alba annual report + CNMV"
+    },
+    {
+      "allocator_id": "corp-financiera-alba",
+      "target_id": "cie-automotive",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: CIE Automotive significant shareholders + CNMV",
+      "notes": "March family is a long-standing significant shareholder of CIE."
+    },
+    {
+      "allocator_id": "corp-financiera-alba",
+      "target_id": "indra",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Indra significant shareholders + CNMV"
+    },
+
+    {
+      "allocator_id": "blackrock",
+      "target_id": "santander",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Santander annual report 2024 — significant shareholders + CNMV",
+      "notes": "BlackRock has consistently been a top-3 shareholder of Santander."
+    },
+    {
+      "allocator_id": "blackrock",
+      "target_id": "bbva",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: BBVA annual report 2024 + CNMV"
+    },
+    {
+      "allocator_id": "blackrock",
+      "target_id": "iberdrola",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Iberdrola annual report 2024 + CNMV"
+    },
+    {
+      "allocator_id": "blackrock",
+      "target_id": "telefonica",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Telefónica annual report 2024 + CNMV"
+    },
+    {
+      "allocator_id": "blackrock",
+      "target_id": "inditex",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Inditex annual report 2024 + CNMV"
+    },
+
+    {
+      "allocator_id": "vanguard",
+      "target_id": "santander",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Santander annual report 2024 + CNMV"
+    },
+    {
+      "allocator_id": "vanguard",
+      "target_id": "bbva",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: BBVA annual report 2024 + CNMV"
+    },
+    {
+      "allocator_id": "vanguard",
+      "target_id": "iberdrola",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Iberdrola annual report 2024 + CNMV"
+    },
+    {
+      "allocator_id": "vanguard",
+      "target_id": "inditex",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Inditex annual report 2024 + CNMV"
+    },
+
+    {
+      "allocator_id": "state-street",
+      "target_id": "santander",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Santander annual report 2024 + CNMV"
+    },
+    {
+      "allocator_id": "state-street",
+      "target_id": "bbva",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: BBVA annual report 2024 + CNMV"
+    },
+
+    {
+      "allocator_id": "gpfg",
+      "target_id": "santander",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Norway GPFG holdings register, annual download (publicly available from NBIM website)"
+    },
+    {
+      "allocator_id": "gpfg",
+      "target_id": "bbva",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Norway GPFG holdings register"
+    },
+    {
+      "allocator_id": "gpfg",
+      "target_id": "iberdrola",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Norway GPFG holdings register"
+    },
+    {
+      "allocator_id": "gpfg",
+      "target_id": "inditex",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Norway GPFG holdings register"
+    },
+    {
+      "allocator_id": "gpfg",
+      "target_id": "telefonica",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Norway GPFG holdings register"
+    },
+    {
+      "allocator_id": "gpfg",
+      "target_id": "ferrovial",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Norway GPFG holdings register"
+    },
+
+    {
+      "allocator_id": "qia",
+      "target_id": "iberdrola",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Iberdrola annual report 2024 — significant shareholders. QIA stake disclosed historically.",
+      "notes": "Qatar Investment Authority is a publicly known significant shareholder of Iberdrola."
+    },
+
+    {
+      "allocator_id": "pif",
+      "target_id": "telefonica",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Telefónica annual report 2024 + CNMV. Saudi PIF stake announced/disclosed.",
+      "notes": "Saudi PIF announced significant Telefónica position; verify current %."
+    },
+
+    {
+      "allocator_id": "mubadala",
+      "target_id": "repsol",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Repsol annual report + Cepsa-Mubadala history. Verify if direct or via Cepsa."
+    },
+
+    {
+      "allocator_id": "blackstone-re",
+      "target_id": "merlin-prop",
+      "stake_type": "real_estate_owned",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Merlin Properties shareholder structure + Blackstone disclosures",
+      "notes": "Blackstone has had significant Spanish RE positions; verify current Merlin stake."
+    },
+
+    {
+      "allocator_id": "amundi",
+      "target_id": "santander",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Santander annual report + CNMV. Amundi presence in IBEX is structural."
+    },
+    {
+      "allocator_id": "amundi",
+      "target_id": "bbva",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: BBVA annual report + CNMV"
+    },
+    {
+      "allocator_id": "amundi",
+      "target_id": "iberdrola",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Iberdrola annual report + CNMV"
+    },
+
+    {
+      "allocator_id": "cvc-capital",
+      "target_id": "naturgy",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Naturgy shareholder structure 2024-2025. Verify if CVC still holds; recent reorganizations possible."
+    },
+
+    {
+      "allocator_id": "ifm-investors",
+      "target_id": "naturgy",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Naturgy annual report 2024 — significant shareholders",
+      "notes": "IFM has been a publicly known significant shareholder of Naturgy."
+    },
+
+    {
+      "allocator_id": "gip",
+      "target_id": "naturgy",
+      "stake_type": "equity_common",
+      "pct_held": null,
+      "as_of": "TODO",
+      "source": "TODO: Naturgy annual report 2024 — significant shareholders. GIP now BlackRock-owned (2024)."
+    }
+
+  ]
+}

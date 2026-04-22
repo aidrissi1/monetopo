@@ -10,6 +10,7 @@ import {
   BOND_BELT_RADIUS,
 } from "./shared/geometry";
 import { computeRingPositions } from "./shared/helpers";
+import { SHADOW_CENTER } from "./actors/ShadowMoney";
 
 const RING_POSITIONS = computeRingPositions();
 
@@ -77,6 +78,16 @@ export const ENTITIES: Entity[] = [
     position: COMPANIES_BOX_POS,
     cameraOffset: new THREE.Vector3(5, 1, 5),
     layer: "credit_flows",
+  },
+  // ─── SHADOW MONEY CLUSTER ───
+  {
+    id: "shadow_money",
+    kind: "sphere",
+    label: "Finance parallèle",
+    color: "#7d8b9b",
+    position: SHADOW_CENTER,
+    cameraOffset: new THREE.Vector3(3, 1, 7),
+    layer: "shadow",
   },
   // ─── 12 BANKS (generated from CREATORS + ring positions) ───
   ...CREATORS.map((c, i) => ({

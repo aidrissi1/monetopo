@@ -1,0 +1,48 @@
+{
+  "_meta": {
+    "as_of": "2026-04-22",
+    "schema_version": 1,
+    "sources": [
+      "ESMA · Registered credit rating agencies list",
+      "Agency websites (S&P Global Ratings, Moody's, Fitch Ratings, DBRS Morningstar, Scope Ratings)"
+    ],
+    "notes": "Tier-0 private rule-makers. Rate sovereign debt + banks + firms. Their downgrades move sovereign yields — when they lower Spain's rating, borrowing costs rise immediately. Currently absent from the scene; the cost of Spanish debt is treated as exogenous."
+  },
+  "agencies": [
+    {
+      "id": "sp-global",
+      "name": "S&P Global Ratings",
+      "short": "S&P",
+      "origin": "US",
+      "role": "Plus grande agence de notation. Note la dette souveraine espagnole (rating actuel accessible via leur site). Note aussi Santander, BBVA, CaixaBank, Telefónica, Iberdrola."
+    },
+    {
+      "id": "moodys",
+      "name": "Moody's Investors Service",
+      "short": "Moody's",
+      "origin": "US",
+      "role": "Deuxième mondiale. Note souverain + principales banques + grandes entreprises espagnoles."
+    },
+    {
+      "id": "fitch",
+      "name": "Fitch Ratings",
+      "short": "Fitch",
+      "origin": "US",
+      "role": "Troisième agence. Périmètre équivalent aux deux précédentes."
+    },
+    {
+      "id": "dbrs",
+      "name": "DBRS Morningstar",
+      "short": "DBRS",
+      "origin": "CA",
+      "role": "Reconnue par la BCE pour les opérations de refinancement. Alternative aux trois grandes."
+    },
+    {
+      "id": "scope",
+      "name": "Scope Ratings",
+      "short": "Scope",
+      "origin": "DE",
+      "role": "Agence européenne · alternative aux notations américaines. Soutenue politiquement par l'UE."
+    }
+  ]
+}

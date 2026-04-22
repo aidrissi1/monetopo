@@ -10,6 +10,17 @@ import { CirculationPipes } from "./flows/CirculationPipes";
 import { ECBPipes } from "./flows/ECBPipes";
 import { StatePipes } from "./flows/StatePipes";
 import { BondBelt } from "./flows/BondBelt";
+import { ReturnFlows } from "./flows/ReturnFlows";
+import { ShadowMoney } from "./actors/ShadowMoney";
+import { Allocators } from "./actors/Allocators";
+import { IbexFirms } from "./actors/IbexFirms";
+import { Supervisors } from "./actors/Supervisors";
+import { EuFiscal } from "./actors/EuFiscal";
+import { RatingAgencies } from "./actors/RatingAgencies";
+import { PaymentRails } from "./actors/PaymentRails";
+import { OwnershipThreads } from "./flows/OwnershipThreads";
+import { CommonOwnership } from "./flows/CommonOwnership";
+import { MoneyFlowTracer } from "./flows/MoneyFlowTracer";
 import { useSceneStore } from "./state";
 import type { LayerId } from "./shared/types";
 
@@ -47,6 +58,11 @@ export function MacroScene() {
         <CreditPipes />
       </Layer>
 
+      {/* ─── Return flows: deposits + loan interest (boxes → banks) ─── */}
+      <Layer id="return_flows">
+        <ReturnFlows />
+      </Layer>
+
       {/* ─── Circulation loop (salaires ↔ consommation) ─── */}
       <Layer id="circulation">
         <CirculationPipes />
@@ -68,6 +84,50 @@ export function MacroScene() {
       <Layer id="bonds">
         <BondBelt />
       </Layer>
+
+      {/* ─── Shadow money (NBFI cluster: MMFs, repo, stablecoins, private credit) ─── */}
+      <Layer id="shadow">
+        <ShadowMoney />
+      </Layer>
+
+      {/* ─── Tier-4 allocator dome + IBEX firm cluster ─── */}
+      <Layer id="allocators">
+        <Allocators />
+        <IbexFirms />
+      </Layer>
+
+      {/* ─── Ownership threads (allocator → bank/firm) ─── */}
+      <Layer id="ownership">
+        <OwnershipThreads />
+      </Layer>
+
+      {/* ─── Common-ownership horizontal arcs (Elhauge) ─── */}
+      <Layer id="common_ownership">
+        <CommonOwnership />
+      </Layer>
+
+      {/* ─── Tier-2 supervisors (SSM, SRB, FGD, CNMV, DGSFP) ─── */}
+      <Layer id="supervisors">
+        <Supervisors />
+      </Layer>
+
+      {/* ─── EU fiscal layer (EIB, ESM, NGEU, SURE) ─── */}
+      <Layer id="eu_fiscal">
+        <EuFiscal />
+      </Layer>
+
+      {/* ─── Tier-0 rating agencies (slowly rotating halo above scene) ─── */}
+      <Layer id="rating_agencies">
+        <RatingAgencies />
+      </Layer>
+
+      {/* ─── Tier-3 payment rails (T2, Iberpay, Bizum, Iberclear) ─── */}
+      <Layer id="payment_rails">
+        <PaymentRails />
+      </Layer>
+
+      {/* ─── Money-flow tracer — always on, driven by ControlDesk button ─── */}
+      <MoneyFlowTracer />
     </>
   );
 }

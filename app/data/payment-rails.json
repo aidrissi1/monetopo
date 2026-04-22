@@ -1,0 +1,59 @@
+{
+  "_meta": {
+    "as_of": "2026-04-22",
+    "schema_version": 1,
+    "sources": [
+      "Eurosystem — T2 + T2S service documentation",
+      "Iberpay — iberpay.es",
+      "Bizum — bizum.es",
+      "BME Iberclear — bmeiberclear.com"
+    ],
+    "notes": "Tier-3 infrastructure — the pipes under the flow pipes. Without T2 reserves don't move between banks. Without Iberclear Spanish bonds don't legally settle. Without Bizum 20M+ Spaniards can't send a retail payment instantly. Invisible in the scene until now."
+  },
+  "rails": [
+    {
+      "id": "t2",
+      "name": "T2 · TARGET2",
+      "short": "T2",
+      "role": "Système de paiement de grande valeur de l'Eurosystème. Chaque flux de réserves entre banques espagnoles passe par T2. Règlement en monnaie centrale.",
+      "scope": [
+        "bde", "santander", "bbva", "caixabank", "sabadell",
+        "bankinter", "unicaja", "ibercaja", "kutxabank", "abanca", "cajamar"
+      ]
+    },
+    {
+      "id": "t2s",
+      "name": "T2S · TARGET2-Securities",
+      "short": "T2S",
+      "role": "Règlement transfrontalier des titres. Les obligations souveraines espagnoles y transitent lors de chaque transaction inter-juridictions.",
+      "scope": ["bde", "santander", "bbva", "caixabank"]
+    },
+    {
+      "id": "iberpay",
+      "name": "Iberpay · SNCE",
+      "short": "Iberpay",
+      "role": "Sistema Nacional de Compensación Electrónica. Compense les paiements retail entre banques espagnoles (virements SEPA, prélèvements).",
+      "scope": [
+        "santander", "bbva", "caixabank", "sabadell",
+        "bankinter", "unicaja", "ibercaja", "kutxabank", "abanca", "cajamar"
+      ]
+    },
+    {
+      "id": "bizum",
+      "name": "Bizum · Instantané P2P",
+      "short": "Bizum",
+      "role": "Paiement instantané entre particuliers. 20M+ d'utilisateurs en Espagne. Surcouche sur les rails Iberpay.",
+      "scope": [
+        "santander", "bbva", "caixabank", "sabadell",
+        "bankinter", "unicaja", "ibercaja", "kutxabank", "abanca"
+      ]
+    },
+    {
+      "id": "iberclear",
+      "name": "Iberclear · BME CSD",
+      "short": "Iberclear",
+      "role": "Dépositaire central espagnol (part du groupe BME / SIX). Les actions IBEX et obligations souveraines y sont légalement enregistrées.",
+      "scope": ["santander", "bbva", "caixabank"]
+    }
+  ]
+}
