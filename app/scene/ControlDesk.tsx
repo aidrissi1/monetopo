@@ -59,6 +59,7 @@ const GROUPS: { title: string; entityIds: EntityId[] }[] = [
 
 const LAYER_LABELS: { id: LayerId; label: string }[] = [
   { id: "banking_core", label: "Banques & capital" },
+  { id: "economy_actors", label: "Ménages & entreprises" },
   { id: "credit_flows", label: "Flux de crédit" },
   { id: "return_flows", label: "Dépôts & intérêts" },
   { id: "circulation", label: "Circulation (salaires/conso)" },

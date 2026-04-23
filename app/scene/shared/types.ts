@@ -51,7 +51,8 @@ export type LayerId =
   | "rating_agencies"   // Tier-0 rotating halo (S&P, Moody's, Fitch, DBRS, Scope)
   | "payment_rails"     // Tier-3 payment + settlement infrastructure
   | "flow_particles"    // animated particles travelling along existing pipes
-  | "bloom";            // post-processing bloom pass on emissive materials
+  | "bloom"             // post-processing bloom pass on emissive materials
+  | "economy_actors";   // households + firms boxes (split from credit_flows)
 
 export interface Entity {
   id: EntityId;

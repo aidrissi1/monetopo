@@ -92,6 +92,7 @@ const ALL_LAYERS: LayerId[] = [
   "payment_rails",
   "flow_particles",
   "bloom",
+  "economy_actors",
 ];
 
 let _tracerNextId = 1;

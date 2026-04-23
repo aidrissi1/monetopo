@@ -50,10 +50,14 @@ export function MacroScene() {
         <Banks />
       </Layer>
 
-      {/* ─── Credit destinations ─── */}
-      <Layer id="credit_flows">
+      {/* ─── Households + firms boxes (own layer so they can show without credit pipes) ─── */}
+      <Layer id="economy_actors">
         <HouseholdsBox />
         <CompaniesBox />
+      </Layer>
+
+      {/* ─── Credit pipes only (boxes moved to economy_actors above) ─── */}
+      <Layer id="credit_flows">
         <CreditPipes />
       </Layer>
 
