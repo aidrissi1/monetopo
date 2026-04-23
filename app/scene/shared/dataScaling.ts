@@ -121,6 +121,15 @@ export const SPENDING_COMPANIES_RADIUS = flowPipeRadius(
   stateData.annual_flows.spending_to_companies_bn_eur
 );
 
+// ─── Circulation pipe radii (wages firms→h'holds, consumption h'holds→firms) ──
+// Both values from households.json (INE Contabilidad Nacional).
+export const WAGES_RADIUS = flowPipeRadius(
+  householdsData.annual_flows.from_wages_bn_eur
+);
+export const CONSUMPTION_RADIUS = flowPipeRadius(
+  householdsData.annual_flows.to_consumption_bn_eur
+);
+
 // ─── Bond belt tube thickness scaled from total sovereign debt ────────
 
 export const BOND_BELT_TUBE_SCALED = (() => {

@@ -3,7 +3,7 @@
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
-import { Html } from "@react-three/drei";
+import { DistantHtml } from "../shared/DistantHtml";
 import ratingData from "@/app/data/rating-agencies.json";
 import { TESORO_POSITION } from "../shared/geometry";
 import { computeRingPositions } from "../shared/helpers";
@@ -149,8 +149,9 @@ export function RatingAgencies() {
                 metalness={0.4}
               />
             </mesh>
-            <Html
+            <DistantHtml
               position={[0, -0.7, 0]}
+              threshold={8}
               center
               distanceFactor={15}
               style={{
@@ -162,12 +163,11 @@ export function RatingAgencies() {
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
                 textShadow: "0 1px 4px rgba(0,0,0,0.9)",
-                opacity: 0.9,
                 whiteSpace: "nowrap",
               }}
             >
               {agency.short}
-            </Html>
+            </DistantHtml>
           </group>
         );
       })}

@@ -73,6 +73,8 @@ const LAYER_LABELS: { id: LayerId; label: string }[] = [
   { id: "eu_fiscal", label: "Fiscal UE (EIB, ESM, NGEU)" },
   { id: "rating_agencies", label: "Agences de notation · Tier 0" },
   { id: "payment_rails", label: "Rails de paiement · Tier 3" },
+  { id: "flow_particles", label: "Particules de flux (animé)" },
+  { id: "bloom", label: "Bloom (halo lumineux)" },
 ];
 
 function Swatch({ kind, color }: { kind: Entity["kind"]; color: string }) {
@@ -161,6 +163,9 @@ export function ControlDesk() {
 
       {!collapsed && (
         <>
+          {/* Guided tour entry — primary CTA at the top */}
+          <TourLaunchButton />
+
           {/* Current focus + back button + open/close button */}
           {focusMode !== "overview" && activeEntity && (
             <div
@@ -290,11 +295,26 @@ export function ControlDesk() {
             >
               💶  Imprimer €100 B
             </button>
+            {/* Warning: the per-channel ratios in qe-transmission.json are
+                flagged verified:false — sourced placeholder defaults, not
+                peer-reviewed. Surface this so nobody treats them as truth. */}
             <div
-              className="mt-1.5"
-              style={{ fontSize: 10, opacity: 0.45, lineHeight: 1.3 }}
+              className="mt-2 flex items-start gap-2 px-2 py-1.5 rounded"
+              style={{
+                background: "rgba(255,166,64,0.08)",
+                border: "1px solid rgba(255,166,64,0.3)",
+                fontSize: 10,
+                lineHeight: 1.35,
+                color: "#ffc98a",
+              }}
             >
-              Ratios illustratifs · à raffiner depuis recherche ECB
+              <span style={{ fontSize: 12 }}>⚠</span>
+              <span>
+                <strong style={{ letterSpacing: "0.05em" }}>
+                  Ratios illustratifs.
+                </strong>{" "}
+                À raffiner depuis ECB Working Papers (PEPP + APP transmission).
+              </span>
             </div>
           </div>
 
@@ -325,8 +345,163 @@ export function ControlDesk() {
               );
             })}
           </div>
+
+          {/* Lighting controls */}
+          <LightingPanel />
         </>
       )}
     </div>
+  );
+}
+
+function LightingPanel() {
+  const lighting = useSceneStore((s) => s.lighting);
+  const setLighting = useSceneStore((s) => s.setLighting);
+  const applyPreset = useSceneStore((s) => s.applyLightingPreset);
+
+  return (
+    <div
+      className="mt-4 pt-3"
+      style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
+    >
+      <div className="text-[10px] uppercase tracking-widest opacity-50 mb-2">
+        Éclairage
+      </div>
+      <div className="flex gap-1 mb-3">
+        {(["studio", "museum", "night"] as const).map((p) => (
+          <button
+            key={p}
+            onClick={() => applyPreset(p)}
+            className="flex-1 py-1 text-[10px] uppercase tracking-wide rounded"
+            style={{
+              background: "rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.12)",
+              color: "white",
+              cursor: "pointer",
+            }}
+          >
+            {p}
+          </button>
+        ))}
+      </div>
+      <LightSlider
+        label="Ambiant"
+        value={lighting.ambient}
+        min={0}
+        max={1.5}
+        onChange={(v) => setLighting("ambient", v)}
+      />
+      <LightSlider
+        label="Clef"
+        value={lighting.key}
+        min={0}
+        max={2}
+        onChange={(v) => setLighting("key", v)}
+      />
+      <LightSlider
+        label="Contre (bleu)"
+        value={lighting.fill}
+        min={0}
+        max={1}
+        onChange={(v) => setLighting("fill", v)}
+      />
+    </div>
+  );
+}
+
+function LightSlider({
+  label,
+  value,
+  min,
+  max,
+  onChange,
+}: {
+  label: string;
+  value: number;
+  min: number;
+  max: number;
+  onChange: (v: number) => void;
+}) {
+  return (
+    <label className="flex items-center gap-2 py-1" style={{ fontSize: 11 }}>
+      <span className="w-20 opacity-70">{label}</span>
+      <input
+        type="range"
+        min={min}
+        max={max}
+        step={0.01}
+        value={value}
+        onChange={(e) => onChange(parseFloat(e.target.value))}
+        className="flex-1"
+      />
+      <span className="w-8 text-right tabular-nums opacity-60">
+        {value.toFixed(2)}
+      </span>
+    </label>
+  );
+}
+
+/**
+ * Primary entry into the guided tour. When the tour is active, shows a muted
+ * "restart" option + a "quitter" shortcut instead.
+ */
+function TourLaunchButton() {
+  const tourStep = useSceneStore((s) => s.tourStep);
+  const startTour = useSceneStore((s) => s.startTour);
+  const exitTour = useSceneStore((s) => s.exitTour);
+  const isActive = tourStep !== null;
+
+  if (isActive) {
+    return (
+      <div
+        className="mb-3 pb-3 flex items-center gap-2"
+        style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}
+      >
+        <button
+          onClick={startTour}
+          className="flex-1 text-xs px-2 py-2 rounded"
+          style={{
+            background: "rgba(255,255,255,0.06)",
+            border: "1px solid rgba(255,255,255,0.15)",
+            color: "rgba(255,255,255,0.75)",
+            cursor: "pointer",
+            letterSpacing: "0.04em",
+          }}
+        >
+          ↺ Recommencer
+        </button>
+        <button
+          onClick={exitTour}
+          className="flex-1 text-xs px-2 py-2 rounded"
+          style={{
+            background: "rgba(255,100,100,0.08)",
+            border: "1px solid rgba(255,100,100,0.25)",
+            color: "#ff9090",
+            cursor: "pointer",
+            letterSpacing: "0.04em",
+          }}
+        >
+          ✕ Quitter
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <button
+      onClick={startTour}
+      className="w-full mb-3 px-3 py-2.5 rounded font-semibold"
+      style={{
+        background:
+          "linear-gradient(135deg, rgba(255,217,122,0.22), rgba(255,217,122,0.08))",
+        border: "1px solid rgba(255,217,122,0.45)",
+        color: "#ffd97a",
+        cursor: "pointer",
+        letterSpacing: "0.06em",
+        fontSize: 12,
+      }}
+    >
+      ▶ Commencer la visite guidée
+    </button>
   );
 }

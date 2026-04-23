@@ -49,7 +49,9 @@ export type LayerId =
   | "supervisors"       // Tier-2 supervisory bodies (SSM, SRB, FGD, CNMV, DGSFP)
   | "eu_fiscal"         // EU fiscal layer (EIB, ESM, NGEU, SURE)
   | "rating_agencies"   // Tier-0 rotating halo (S&P, Moody's, Fitch, DBRS, Scope)
-  | "payment_rails";    // Tier-3 payment + settlement infrastructure
+  | "payment_rails"     // Tier-3 payment + settlement infrastructure
+  | "flow_particles"    // animated particles travelling along existing pipes
+  | "bloom";            // post-processing bloom pass on emissive materials
 
 export interface Entity {
   id: EntityId;

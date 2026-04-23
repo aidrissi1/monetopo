@@ -2,7 +2,7 @@
 
 import * as THREE from "three";
 import { useMemo } from "react";
-import { Html } from "@react-three/drei";
+import { DistantHtml } from "../shared/DistantHtml";
 import {
   HOUSEHOLDS_BOX_POS,
   COMPANIES_BOX_POS,
@@ -13,6 +13,7 @@ import {
 import { HOUSEHOLDS_BOX_SIDE, COMPANIES_BOX_SIDE } from "../shared/dataScaling";
 import householdsData from "../../data/households.json";
 import firmsData from "../../data/firms.json";
+import { FlowParticles } from "./FlowParticles";
 
 /**
  * A curved tube for return flows: boxes → banking system.
@@ -33,25 +34,29 @@ function ReturnPipe({
   color: string;
   radius: number;
 }) {
-  const geometry = useMemo(() => {
+  const { geometry, curve } = useMemo(() => {
     const c1 = new THREE.Vector3().lerpVectors(start, end, 0.33).add(arcOffset);
     const c2 = new THREE.Vector3().lerpVectors(start, end, 0.66).add(arcOffset);
     const curve = new THREE.CubicBezierCurve3(start, c1, c2, end);
-    return new THREE.TubeGeometry(curve, 48, radius, 10, false);
+    const geometry = new THREE.TubeGeometry(curve, 48, radius, 10, false);
+    return { geometry, curve };
   }, [start, end, arcOffset, radius]);
 
   return (
-    <mesh geometry={geometry}>
-      <meshStandardMaterial
-        color={color}
-        metalness={0.3}
-        roughness={0.5}
-        emissive={color}
-        emissiveIntensity={0.35}
-        transparent
-        opacity={0.75}
-      />
-    </mesh>
+    <group>
+      <mesh geometry={geometry}>
+        <meshStandardMaterial
+          color={color}
+          metalness={0.3}
+          roughness={0.5}
+          emissive={color}
+          emissiveIntensity={0.35}
+          transparent
+          opacity={0.75}
+        />
+      </mesh>
+      <FlowParticles curve={curve} color={color} count={5} speed={0.24} size={0.08} />
+    </group>
   );
 }
 
@@ -134,8 +139,9 @@ export function ReturnFlows() {
       />
 
       {/* Labels */}
-      <Html
+      <DistantHtml
         position={[0, -4.5, 1.5]}
+        threshold={8}
         center
         distanceFactor={10}
         style={{
@@ -147,14 +153,14 @@ export function ReturnFlows() {
           letterSpacing: "0.08em",
           textTransform: "uppercase",
           textShadow: "0 1px 4px rgba(0,0,0,0.9)",
-          opacity: 0.9,
           whiteSpace: "nowrap",
         }}
       >
         Dépôts
-      </Html>
-      <Html
+      </DistantHtml>
+      <DistantHtml
         position={[0, -3.2, -3.5]}
+        threshold={8}
         center
         distanceFactor={10}
         style={{
@@ -166,12 +172,11 @@ export function ReturnFlows() {
           letterSpacing: "0.08em",
           textTransform: "uppercase",
           textShadow: "0 1px 4px rgba(0,0,0,0.9)",
-          opacity: 0.9,
           whiteSpace: "nowrap",
         }}
       >
         Intérêts crédit
-      </Html>
+      </DistantHtml>
     </>
   );
 }

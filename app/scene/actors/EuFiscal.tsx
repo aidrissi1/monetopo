@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import * as THREE from "three";
-import { Html } from "@react-three/drei";
+import { DistantHtml } from "../shared/DistantHtml";
 import euData from "@/app/data/eu-fiscal.json";
 import {
   TESORO_POSITION,
@@ -179,8 +179,9 @@ export function EuFiscal() {
                 metalness={0.5}
               />
             </mesh>
-            <Html
+            <DistantHtml
               position={[0, -0.95, 0]}
+              threshold={8}
               center
               distanceFactor={14}
               style={{
@@ -192,12 +193,11 @@ export function EuFiscal() {
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
                 textShadow: "0 1px 4px rgba(0,0,0,0.9)",
-                opacity: 0.92,
                 whiteSpace: "nowrap",
               }}
             >
               {entity.short}
-            </Html>
+            </DistantHtml>
           </group>
         );
       })}

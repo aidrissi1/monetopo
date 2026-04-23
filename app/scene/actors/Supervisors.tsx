@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import * as THREE from "three";
-import { Html } from "@react-three/drei";
+import { DistantHtml } from "../shared/DistantHtml";
 import supervisorsData from "@/app/data/supervisors.json";
 import { computeRingPositions } from "../shared/helpers";
 import { CREATORS } from "../shared/creators";
@@ -166,8 +166,9 @@ export function Supervisors() {
               />
             </mesh>
             {/* Label below the torus */}
-            <Html
+            <DistantHtml
               position={[0, -0.75, 0]}
+              threshold={8}
               center
               distanceFactor={14}
               style={{
@@ -179,12 +180,11 @@ export function Supervisors() {
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
                 textShadow: "0 1px 4px rgba(0,0,0,0.9)",
-                opacity: 0.92,
                 whiteSpace: "nowrap",
               }}
             >
               {sup.short}
-            </Html>
+            </DistantHtml>
           </group>
         );
       })}

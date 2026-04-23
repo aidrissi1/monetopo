@@ -24,13 +24,16 @@
     "total_tax_revenue_bn_eur": 297,
     "tax_from_households_bn_eur": 165,
     "tax_from_companies_bn_eur": 132,
+    "social_security_contributions_bn_eur": 155,
+    "non_tax_revenue_bn_eur": 106,
+    "total_revenue_bn_eur": 558,
+    "_revenue_notes": "total_revenue = tax_from_(h+c) + social_security_contributions + non_tax_revenue (fees, property income, EU transfers, etc.). tax_from_h/c cover income-tax + corporate-tax + VAT + indirect taxes; SS contributions are separate; non_tax is the residual required so spending - revenue = stated deficit.",
     "breakdown_tax": {
       "income_tax_irpf_bn_eur": 120,
       "corporate_tax_bn_eur": 35,
       "vat_iva_bn_eur": 85,
-      "social_security_contributions_bn_eur": 155,
-      "other_indirect_taxes_bn_eur": 45,
-      "_notes": "Social security contributions split ~60% employer (companies) / 40% employee (households)"
+      "other_indirect_taxes_bn_eur": 57,
+      "_notes": "Sums to total_tax_revenue (297). Social security contributions (155) are NOT taxes and live at annual_flows level."
     },
     "total_spending_bn_eur": 610,
     "spending_to_households_bn_eur": 385,

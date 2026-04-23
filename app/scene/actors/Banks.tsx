@@ -2,7 +2,8 @@
 
 import * as THREE from "three";
 import { useMemo } from "react";
-import { Cylinder, Html } from "@react-three/drei";
+import { Cylinder } from "@react-three/drei";
+import { DistantHtml } from "../shared/DistantHtml";
 import { CREATORS } from "../shared/creators";
 import type { MoneyCreator, EntityId } from "../shared/types";
 import {
@@ -92,11 +93,10 @@ function BankLink({
 
       {/* Label floats beyond the sphere surface along the outward direction */}
       <group position={satellitePosition}>
-        <Html
-          position={direction
-            .clone()
-            .multiplyScalar(radius + 0.25)
-            .toArray()}
+        <DistantHtml
+          position={direction.clone().multiplyScalar(radius + 0.25)}
+          threshold={10}
+          showWhenActive={creator.id as EntityId}
           center
           distanceFactor={10}
           style={{
@@ -107,11 +107,10 @@ function BankLink({
             textAlign: "center",
             whiteSpace: "nowrap",
             textShadow: "0 1px 4px rgba(0,0,0,0.8)",
-            opacity: 0.92,
           }}
         >
           {creator.name}
-        </Html>
+        </DistantHtml>
       </group>
     </group>
   );

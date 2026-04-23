@@ -2,7 +2,8 @@
 
 import * as THREE from "three";
 import { useMemo } from "react";
-import { Cylinder, Html } from "@react-three/drei";
+import { Cylinder } from "@react-three/drei";
+import { DistantHtml } from "../shared/DistantHtml";
 import { CREATORS } from "../shared/creators";
 import {
   BOND_BELT_Y,
@@ -105,8 +106,10 @@ export function BondBelt() {
       })()}
 
       {/* Interest label */}
-      <Html
+      <DistantHtml
         position={[0, BOND_BELT_Y + INTEREST_Y_OFFSET - 0.3, -7]}
+        threshold={12}
+        showWhenActive="bond_belt"
         center
         distanceFactor={10}
         style={{
@@ -118,16 +121,17 @@ export function BondBelt() {
           letterSpacing: "0.08em",
           textTransform: "uppercase",
           textShadow: "0 1px 4px rgba(0,0,0,0.9)",
-          opacity: 0.9,
           whiteSpace: "nowrap",
         }}
       >
         Intérêts 38 B€/an
-      </Html>
+      </DistantHtml>
 
       {/* Belt label */}
-      <Html
+      <DistantHtml
         position={[0, BOND_BELT_Y + 0.6, -BOND_BELT_RADIUS]}
+        threshold={12}
+        showWhenActive="bond_belt"
         center
         distanceFactor={10}
         style={{
@@ -139,12 +143,11 @@ export function BondBelt() {
           letterSpacing: "0.08em",
           textTransform: "uppercase",
           textShadow: "0 1px 4px rgba(0,0,0,0.9)",
-          opacity: 0.92,
           whiteSpace: "nowrap",
         }}
       >
         Obligations d&apos;État
-      </Html>
+      </DistantHtml>
 
       {/* 12 branches: belt → each bank */}
       {positions.map((pos, i) => {

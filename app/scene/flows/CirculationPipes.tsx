@@ -2,12 +2,14 @@
 
 import * as THREE from "three";
 import { useMemo } from "react";
-import { Html } from "@react-three/drei";
+import { DistantHtml } from "../shared/DistantHtml";
 import {
   BOX_SIZE,
   HOUSEHOLDS_BOX_POS,
   COMPANIES_BOX_POS,
 } from "../shared/geometry";
+import { WAGES_RADIUS, CONSUMPTION_RADIUS } from "../shared/dataScaling";
+import { FlowParticles } from "./FlowParticles";
 
 function CirculationPipe({
   from,
@@ -27,7 +29,7 @@ function CirculationPipe({
   labelOffsetY: number;
 }) {
   const halfBox = BOX_SIZE[0] / 2;
-  const geometry = useMemo(() => {
+  const { geometry, curve } = useMemo(() => {
     const dir = new THREE.Vector3().subVectors(to, from).normalize();
     const start = from.clone().add(dir.clone().multiplyScalar(halfBox));
     const end = to.clone().sub(dir.clone().multiplyScalar(halfBox));
@@ -38,7 +40,8 @@ function CirculationPipe({
     c2.y += arcStrength;
 
     const curve = new THREE.CubicBezierCurve3(start, c1, c2, end);
-    return new THREE.TubeGeometry(curve, 64, radius, 12, false);
+    const geometry = new THREE.TubeGeometry(curve, 64, radius, 12, false);
+    return { geometry, curve };
   }, [from, to, arcStrength, radius, halfBox]);
 
   const midPoint = useMemo(
@@ -63,8 +66,10 @@ function CirculationPipe({
           opacity={0.92}
         />
       </mesh>
-      <Html
-        position={midPoint.toArray()}
+      <FlowParticles curve={curve} color={color} count={7} speed={0.22} size={0.1} />
+      <DistantHtml
+        position={midPoint}
+        threshold={8}
         center
         distanceFactor={10}
         style={{
@@ -76,12 +81,11 @@ function CirculationPipe({
           letterSpacing: "0.08em",
           textTransform: "uppercase",
           textShadow: "0 1px 4px rgba(0,0,0,0.9)",
-          opacity: 0.95,
           whiteSpace: "nowrap",
         }}
       >
         {label}
-      </Html>
+      </DistantHtml>
     </group>
   );
 }
@@ -90,21 +94,23 @@ function CirculationPipe({
 export function CirculationPipes() {
   return (
     <>
+      {/* Wages — firms → households — €585 B/yr (INE) */}
       <CirculationPipe
         from={COMPANIES_BOX_POS}
         to={HOUSEHOLDS_BOX_POS}
         color="#5dd39e"
         arcStrength={8.5}
-        radius={0.14}
+        radius={WAGES_RADIUS}
         label="Salaires"
         labelOffsetY={-1.2}
       />
+      {/* Consumption — households → firms — €760 B/yr (INE) */}
       <CirculationPipe
         from={HOUSEHOLDS_BOX_POS}
         to={COMPANIES_BOX_POS}
         color="#ffbf5c"
         arcStrength={-8.5}
-        radius={0.14}
+        radius={CONSUMPTION_RADIUS}
         label="Consommation"
         labelOffsetY={1.2}
       />

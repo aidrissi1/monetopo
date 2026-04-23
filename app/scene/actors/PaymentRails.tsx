@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import * as THREE from "three";
-import { Html } from "@react-three/drei";
+import { DistantHtml } from "../shared/DistantHtml";
 import railsData from "@/app/data/payment-rails.json";
 import { CREATORS } from "../shared/creators";
 import { computeRingPositions } from "../shared/helpers";
@@ -132,8 +132,9 @@ export function PaymentRails() {
                 metalness={0.3}
               />
             </mesh>
-            <Html
+            <DistantHtml
               position={[0, -0.4, 0]}
+              threshold={8}
               center
               distanceFactor={13}
               style={{
@@ -145,12 +146,11 @@ export function PaymentRails() {
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
                 textShadow: "0 1px 4px rgba(0,0,0,0.9)",
-                opacity: 0.85,
                 whiteSpace: "nowrap",
               }}
             >
               {rail.short}
-            </Html>
+            </DistantHtml>
           </group>
         );
       })}

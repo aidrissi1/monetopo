@@ -2,7 +2,7 @@
 
 import * as THREE from "three";
 import { useMemo } from "react";
-import { Html } from "@react-three/drei";
+import { DistantHtml } from "../shared/DistantHtml";
 import { TAX_COLOR, SPENDING_COLOR } from "../shared/geometry";
 import {
   TAX_HOUSEHOLDS_RADIUS,
@@ -10,6 +10,7 @@ import {
   SPENDING_HOUSEHOLDS_RADIUS,
   SPENDING_COMPANIES_RADIUS,
 } from "../shared/dataScaling";
+import { FlowParticles } from "./FlowParticles";
 
 function StateFlowPipe({
   start,
@@ -30,9 +31,10 @@ function StateFlowPipe({
   label?: string;
   labelPosition?: THREE.Vector3;
 }) {
-  const geometry = useMemo(() => {
+  const { geometry, curve } = useMemo(() => {
     const curve = new THREE.CubicBezierCurve3(start, c1, c2, end);
-    return new THREE.TubeGeometry(curve, 64, radius, 12, false);
+    const geometry = new THREE.TubeGeometry(curve, 64, radius, 12, false);
+    return { geometry, curve };
   }, [start, end, c1, c2, radius]);
 
   return (
@@ -48,9 +50,11 @@ function StateFlowPipe({
           opacity={0.92}
         />
       </mesh>
+      <FlowParticles curve={curve} color={color} count={5} speed={0.2} size={0.09} />
       {label && labelPosition && (
-        <Html
-          position={labelPosition.toArray()}
+        <DistantHtml
+          position={labelPosition}
+          threshold={8}
           center
           distanceFactor={10}
           style={{
@@ -62,12 +66,11 @@ function StateFlowPipe({
             letterSpacing: "0.08em",
             textTransform: "uppercase",
             textShadow: "0 1px 4px rgba(0,0,0,0.9)",
-            opacity: 0.92,
             whiteSpace: "nowrap",
           }}
         >
           {label}
-        </Html>
+        </DistantHtml>
       )}
     </>
   );

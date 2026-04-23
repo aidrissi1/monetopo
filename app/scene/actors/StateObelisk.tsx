@@ -1,6 +1,7 @@
 "use client";
 
-import { Cone, Html } from "@react-three/drei";
+import { Cone } from "@react-three/drei";
+import { DistantHtml } from "../shared/DistantHtml";
 import * as THREE from "three";
 import {
   TESORO_POSITION,
@@ -85,8 +86,10 @@ function SubState({
           emissiveIntensity={0.4}
         />
       </Cone>
-      <Html
+      <DistantHtml
         position={[0, -height / 2 - 0.55, 0]}
+        threshold={14}
+        showWhenActive="state"
         center
         distanceFactor={12}
         style={{
@@ -98,12 +101,11 @@ function SubState({
           letterSpacing: "0.14em",
           textTransform: "uppercase",
           textShadow: "0 1px 4px rgba(0,0,0,0.9)",
-          opacity: 0.92,
           whiteSpace: "nowrap",
         }}
       >
         {label}
-      </Html>
+      </DistantHtml>
     </group>
   );
 }

@@ -12,6 +12,7 @@ import {
 } from "../shared/geometry";
 import { computeRingPositions, quatFromNormal } from "../shared/helpers";
 import { bankRadius, HUB_RADIUS_SCALED } from "../shared/dataScaling";
+import { FlowParticles } from "./FlowParticles";
 
 // Reserves manifold node — where reserves flow from ECB to before fanning
 // out to each bank. Placed behind the scene to keep the pipes readable.
@@ -24,24 +25,28 @@ const RESERVES_BRANCH_RADIUS = 0.05;
  * intersect the reserves pipe that arcs backward.
  */
 function ECBRegulationPipe() {
-  const geometry = useMemo(() => {
+  const { geometry, curve } = useMemo(() => {
     const start = new THREE.Vector3(0, ECB_BASE_Y + 0.9, 0);
     const end = new THREE.Vector3(0, HUB_RADIUS_SCALED - 0.5, 0);
     const c1 = new THREE.Vector3(0, ECB_BASE_Y - 1.6, 3.2);
     const c2 = new THREE.Vector3(0, HUB_RADIUS_SCALED + 2.0, 3.2);
     const curve = new THREE.CubicBezierCurve3(start, c1, c2, end);
-    return new THREE.TubeGeometry(curve, 64, ECB_REG_PIPE_RADIUS, 14, false);
+    const geometry = new THREE.TubeGeometry(curve, 64, ECB_REG_PIPE_RADIUS, 14, false);
+    return { geometry, curve };
   }, []);
   return (
-    <mesh geometry={geometry}>
-      <meshStandardMaterial
-        color="#ffe08a"
-        metalness={0.75}
-        roughness={0.22}
-        emissive="#d4a020"
-        emissiveIntensity={0.7}
-      />
-    </mesh>
+    <group>
+      <mesh geometry={geometry}>
+        <meshStandardMaterial
+          color="#ffe08a"
+          metalness={0.75}
+          roughness={0.22}
+          emissive="#d4a020"
+          emissiveIntensity={0.7}
+        />
+      </mesh>
+      <FlowParticles curve={curve} color="#ffe08a" count={3} speed={0.15} size={0.09} />
+    </group>
   );
 }
 
@@ -57,13 +62,14 @@ function ECBReservesPipe() {
   const positions = useMemo(() => computeRingPositions(), []);
 
   // Main trunk ECB pyramid → manifold node (arcs backward)
-  const trunkGeometry = useMemo(() => {
+  const { trunkGeometry, trunkCurve } = useMemo(() => {
     const start = new THREE.Vector3(0, ECB_BASE_Y + 0.9, 0);
     const end = RESERVES_MANIFOLD.clone();
     const c1 = new THREE.Vector3(0, ECB_BASE_Y - 1.6, -3.5);
     const c2 = new THREE.Vector3(0, 3.5, -5.5);
     const curve = new THREE.CubicBezierCurve3(start, c1, c2, end);
-    return new THREE.TubeGeometry(curve, 64, ECB_REG_PIPE_RADIUS, 14, false);
+    const geometry = new THREE.TubeGeometry(curve, 64, ECB_REG_PIPE_RADIUS, 14, false);
+    return { trunkGeometry: geometry, trunkCurve: curve };
   }, []);
 
   return (
@@ -78,6 +84,7 @@ function ECBReservesPipe() {
           emissiveIntensity={0.6}
         />
       </mesh>
+      <FlowParticles curve={trunkCurve} color="#7ac7ff" count={4} speed={0.18} size={0.09} />
 
       {/* Manifold node (represents reserves pool) */}
       <Sphere args={[RESERVES_MANIFOLD_RADIUS, 32, 32]} position={RESERVES_MANIFOLD}>

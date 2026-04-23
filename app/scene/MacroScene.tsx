@@ -18,6 +18,7 @@ import { Supervisors } from "./actors/Supervisors";
 import { EuFiscal } from "./actors/EuFiscal";
 import { RatingAgencies } from "./actors/RatingAgencies";
 import { PaymentRails } from "./actors/PaymentRails";
+import { SceneLighting } from "./SceneLighting";
 import { OwnershipThreads } from "./flows/OwnershipThreads";
 import { CommonOwnership } from "./flows/CommonOwnership";
 import { MoneyFlowTracer } from "./flows/MoneyFlowTracer";
@@ -40,10 +41,8 @@ function Layer({ id, children }: { id: LayerId; children: React.ReactNode }) {
 export function MacroScene() {
   return (
     <>
-      {/* Lights — always on */}
-      <ambientLight intensity={0.45} />
-      <directionalLight position={[7, 7, 7]} intensity={0.9} />
-      <directionalLight position={[-7, -4, -7]} intensity={0.3} color="#4f7cff" />
+      {/* Lights — driven by the ControlDesk lighting sliders. */}
+      <SceneLighting />
 
       {/* ─── Banking core: hub + 12 banks + capital pipes ─── */}
       <Layer id="banking_core">

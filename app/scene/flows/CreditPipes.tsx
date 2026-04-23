@@ -15,6 +15,7 @@ import {
   faceNormalForEntry,
 } from "../shared/helpers";
 import { bankRadius } from "../shared/dataScaling";
+import { FlowParticles } from "./FlowParticles";
 
 function CurvedPipe({
   from,
@@ -31,7 +32,7 @@ function CurvedPipe({
   arcStrength: number;
   fromRadius: number;
 }) {
-  const geometry = useMemo(() => {
+  const { geometry, curve } = useMemo(() => {
     const bankOutward = from.clone().normalize();
     const start = from
       .clone()
@@ -44,21 +45,25 @@ function CurvedPipe({
     const c2 = end.clone().add(faceNorm.clone().multiplyScalar(arcStrength));
 
     const curve = new THREE.CubicBezierCurve3(start, c1, c2, end);
-    return new THREE.TubeGeometry(curve, 64, CURVE_PIPE_RADIUS, 10, false);
+    const geometry = new THREE.TubeGeometry(curve, 64, CURVE_PIPE_RADIUS, 10, false);
+    return { geometry, curve };
   }, [from, to, faceNorm, arcStrength, fromRadius]);
 
   return (
-    <mesh geometry={geometry}>
-      <meshStandardMaterial
-        color={color}
-        metalness={0.35}
-        roughness={0.4}
-        emissive={color}
-        emissiveIntensity={0.45}
-        transparent
-        opacity={0.9}
-      />
-    </mesh>
+    <group>
+      <mesh geometry={geometry}>
+        <meshStandardMaterial
+          color={color}
+          metalness={0.35}
+          roughness={0.4}
+          emissive={color}
+          emissiveIntensity={0.45}
+          transparent
+          opacity={0.9}
+        />
+      </mesh>
+      <FlowParticles curve={curve} color={color} count={4} speed={0.35} size={0.07} />
+    </group>
   );
 }
 

@@ -2,7 +2,8 @@
 
 import * as THREE from "three";
 import { useMemo } from "react";
-import { Sphere, Html } from "@react-three/drei";
+import { Sphere } from "@react-three/drei";
+import { DistantHtml } from "../shared/DistantHtml";
 import nbfiData from "../../data/nbfi.json";
 import { HUB_RADIUS_SCALED } from "../shared/dataScaling";
 import { OpenableSphere } from "./OpenableSphere";
@@ -108,8 +109,9 @@ export function ShadowMoney() {
                 emissiveIntensity={0.35}
               />
             </Sphere>
-            <Html
+            <DistantHtml
               position={[0, n.radius + 0.2, 0]}
+              threshold={8}
               center
               distanceFactor={9}
               style={{
@@ -120,21 +122,22 @@ export function ShadowMoney() {
                 textAlign: "center",
                 whiteSpace: "nowrap",
                 textShadow: "0 1px 3px rgba(0,0,0,0.95)",
-                opacity: 0.98,
                 lineHeight: 1.15,
               }}
             >
               <div style={{ fontWeight: 700 }}>{n.label}</div>
               <div style={{ fontSize: 10, opacity: 0.85 }}>{n.valueLabel}</div>
-            </Html>
+            </DistantHtml>
           </group>
         ))}
       </OpenableSphere>
 
-      {/* External label — always visible */}
+      {/* External label — shown when zoomed close or when shadow_money is active */}
       <group position={SHADOW_CENTER}>
-        <Html
+        <DistantHtml
           position={[0, -SHADOW_CLOUD_RADIUS - 0.6, 0]}
+          threshold={14}
+          showWhenActive="shadow_money"
           center
           distanceFactor={10}
           style={{
@@ -146,14 +149,15 @@ export function ShadowMoney() {
             letterSpacing: "0.12em",
             textTransform: "uppercase",
             textShadow: "0 1px 4px rgba(0,0,0,0.9)",
-            opacity: 0.9,
             whiteSpace: "nowrap",
           }}
         >
           Finance parallèle
-        </Html>
-        <Html
+        </DistantHtml>
+        <DistantHtml
           position={[0, -SHADOW_CLOUD_RADIUS - 1.0, 0]}
+          threshold={14}
+          showWhenActive="shadow_money"
           center
           distanceFactor={10}
           style={{
@@ -162,13 +166,12 @@ export function ShadowMoney() {
             fontSize: 10,
             fontFamily: "system-ui, sans-serif",
             textShadow: "0 1px 3px rgba(0,0,0,0.9)",
-            opacity: 0.8,
             whiteSpace: "nowrap",
           }}
         >
           NBFI UE : €{(nbfiData.eu_aggregate.total_nbfi_assets_bn_eur / 1000).toFixed(1)}T
           · {nbfiData.eu_aggregate.nbfi_as_pct_of_gdp}% PIB
-        </Html>
+        </DistantHtml>
       </group>
 
       {/* Amplifier pipe → capital hub (always rendered) */}

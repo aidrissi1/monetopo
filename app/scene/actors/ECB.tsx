@@ -1,6 +1,7 @@
 "use client";
 
-import { Cone, Html } from "@react-three/drei";
+import { Cone } from "@react-three/drei";
+import { DistantHtml } from "../shared/DistantHtml";
 import {
   ECB_CENTER,
   ECB_BASE_RADIUS,
@@ -27,8 +28,10 @@ export function ECB() {
           emissiveIntensity={0.45}
         />
       </Cone>
-      <Html
+      <DistantHtml
         position={[0, -ECB_HEIGHT / 2 - 0.7, 0]}
+        threshold={14}
+        showWhenActive="ecb"
         center
         distanceFactor={10}
         style={{
@@ -40,11 +43,10 @@ export function ECB() {
           letterSpacing: "0.14em",
           textTransform: "uppercase",
           textShadow: "0 1px 4px rgba(0,0,0,0.9)",
-          opacity: 0.98,
         }}
       >
         BCE
-      </Html>
+      </DistantHtml>
     </group>
   );
 }
