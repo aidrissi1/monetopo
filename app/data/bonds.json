@@ -7,7 +7,7 @@
       "Tesoro Público — Informe Mensual",
       "ECB SDW — securities holdings statistics"
     ],
-    "last_updated": "2026-05-12",
+    "last_updated": "2026-05-13",
     "auto_refresh": true
   },
   "spanish_sovereign_debt": {
@@ -20,7 +20,7 @@
       "spanish_households_and_other_bn_eur": 105
     },
     "avg_maturity_years": 7.8,
-    "avg_yield_10y_pct": 3.38
+    "avg_yield_10y_pct": 3.45
   },
   "_holdings_by_bank_approximate_bn_eur": {
     "_notes": "Per-bank domestic sovereign holdings are not always public; these are estimates scaled by balance sheet size from Pillar 3 disclosures.",
@@ -37,6 +37,6 @@
     "cajamar": 10,
     "otros": 10
   },
-  "german_bund_10y_pct": 2.91,
-  "spread_spain_germany_10y_bps": 47
+  "german_bund_10y_pct": 3,
+  "spread_spain_germany_10y_bps": 45
 }
