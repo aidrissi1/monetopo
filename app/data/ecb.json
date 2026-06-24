@@ -7,7 +7,7 @@
       "ECB Annual Report 2024",
       "ECB Statistical Data Warehouse"
     ],
-    "last_updated": "2026-06-23",
+    "last_updated": "2026-06-24",
     "auto_refresh": true
   },
   "eurosystem_balance_sheet": {
@@ -40,7 +40,7 @@
     "deposit_facility": 2.25,
     "main_refinancing_operations": 2.4,
     "marginal_lending_facility": 2.65,
-    "as_of": "2026-06-23"
+    "as_of": "2026-06-24"
   },
   "governing_council": {
     "executive_board_members": 6,
