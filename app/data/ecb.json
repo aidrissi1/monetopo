@@ -7,7 +7,7 @@
       "ECB Annual Report 2024",
       "ECB Statistical Data Warehouse"
     ],
-    "last_updated": "2026-06-28",
+    "last_updated": "2026-06-29",
     "auto_refresh": true
   },
   "eurosystem_balance_sheet": {
@@ -34,13 +34,13 @@
   "monetary_aggregates_eurozone": {
     "m0_base_money_bn_eur": 4750,
     "m1_bn_eur": 11400,
-    "m3_bn_eur": 17434
+    "m3_bn_eur": 17552
   },
   "policy_rates_pct": {
     "deposit_facility": 2.25,
     "main_refinancing_operations": 2.4,
     "marginal_lending_facility": 2.65,
-    "as_of": "2026-06-28"
+    "as_of": "2026-06-29"
   },
   "governing_council": {
     "executive_board_members": 6,
@@ -48,7 +48,7 @@
     "total_seats": 26,
     "rotating_votes": 19
   },
-  "_last_m3_date": "2026-04",
+  "_last_m3_date": "2026-05",
   "hicp_eurozone_annual_pct": {
     "hicp_annual_pct": 1.9,
     "as_of": "2025-12"
