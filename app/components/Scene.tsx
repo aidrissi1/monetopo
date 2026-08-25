@@ -13,8 +13,13 @@ import { HoverTooltip } from "../scene/HoverTooltip";
 import { TracerSummary } from "../scene/TracerSummary";
 import { DetailPanel } from "../scene/DetailPanel";
 import { FlowKPIBoard } from "../scene/FlowKPIBoard";
+import { BalanceSheetPanel } from "../scene/BalanceSheetPanel";
+import { CreditEventParticles } from "../scene/flows/CreditEventParticles";
+import { TransferParticles } from "../scene/flows/TransferParticles";
 import { TourOverlay } from "../scene/tour/TourOverlay";
 import { useTour } from "../scene/tour/useTour";
+import { LifeOfEuroOverlay } from "../scene/life/LifeOfEuroOverlay";
+import { useLifeOfEuro } from "../scene/life/useLifeOfEuro";
 import {
   DEFAULT_CAMERA_POSITION,
   DEFAULT_CAMERA_TARGET,
@@ -24,6 +29,8 @@ export default function Scene() {
   const controlsRef = useRef<React.ComponentRef<typeof OrbitControls> | null>(null);
   // Wire the guided tour — watches tourStep and applies layers + camera + actions.
   useTour();
+  // Wire the life-of-euro narrative — watches lifeStep and fires credit + transfer events.
+  useLifeOfEuro();
 
   return (
     <div className="relative w-full h-full">
@@ -38,6 +45,8 @@ export default function Scene() {
             for selective bloom — only flagged meshes get the halo. */}
         <Selection>
           <MacroScene />
+          <CreditEventParticles />
+          <TransferParticles />
           <CameraController controlsRef={controlsRef} />
           <SceneEffects />
           <OrbitControls
@@ -57,7 +66,9 @@ export default function Scene() {
       <TracerSummary />
       <DetailPanel />
       <FlowKPIBoard />
+      <BalanceSheetPanel />
       <TourOverlay />
+      <LifeOfEuroOverlay />
     </div>
   );
 }

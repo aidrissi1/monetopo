@@ -166,6 +166,7 @@ export function ControlDesk() {
         <>
           {/* Guided tour entry — primary CTA at the top */}
           <TourLaunchButton />
+          <LifeOfEuroLaunchButton />
 
           {/* Current focus + back button + open/close button */}
           {focusMode !== "overview" && activeEntity && (
@@ -503,6 +504,72 @@ function TourLaunchButton() {
       }}
     >
       ▶ Commencer la visite guidée
+    </button>
+  );
+}
+
+/**
+ * Parallel launcher for the Life-of-a-Euro narrative. Walks one hypothetical
+ * €1 B loan through creation → consumption → wages → taxes → repayment →
+ * destruction, using M1 credit primitives and M2 deposit transfers.
+ */
+function LifeOfEuroLaunchButton() {
+  const lifeStep = useSceneStore((s) => s.lifeStep);
+  const start = useSceneStore((s) => s.startLifeOfEuro);
+  const exit = useSceneStore((s) => s.exitLifeOfEuro);
+  const isActive = lifeStep !== null;
+
+  if (isActive) {
+    return (
+      <div
+        className="mb-3 pb-3 flex items-center gap-2"
+        style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}
+      >
+        <button
+          onClick={start}
+          className="flex-1 text-xs px-2 py-2 rounded"
+          style={{
+            background: "rgba(255,255,255,0.06)",
+            border: "1px solid rgba(255,255,255,0.15)",
+            color: "rgba(255,255,255,0.75)",
+            cursor: "pointer",
+            letterSpacing: "0.04em",
+          }}
+        >
+          ↺ Rejouer
+        </button>
+        <button
+          onClick={exit}
+          className="flex-1 text-xs px-2 py-2 rounded"
+          style={{
+            background: "rgba(255,100,100,0.08)",
+            border: "1px solid rgba(255,100,100,0.25)",
+            color: "#ff9090",
+            cursor: "pointer",
+            letterSpacing: "0.04em",
+          }}
+        >
+          ✕ Quitter
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <button
+      onClick={start}
+      className="w-full mb-3 px-3 py-2.5 rounded font-semibold"
+      style={{
+        background:
+          "linear-gradient(135deg, rgba(93,211,158,0.2), rgba(93,211,158,0.08))",
+        border: "1px solid rgba(93,211,158,0.42)",
+        color: "#5dd39e",
+        cursor: "pointer",
+        letterSpacing: "0.06em",
+        fontSize: 12,
+      }}
+    >
+      €€€ Vie d&apos;un euro — création → destruction
     </button>
   );
 }

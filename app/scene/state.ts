@@ -15,7 +15,41 @@ export interface TracerEvent {
   amountBn: number;
 }
 
-interface SceneState {
+/**
+ * A credit event — the BoE 2014 dual-entry primitive.
+ *   kind="create" → loan + deposit appear simultaneously on bank's books
+ *   kind="destroy" → loan repaid, deposit cancelled
+ *
+ * We keep the full log so the BalanceSheetPanel can derive running totals per
+ * bank, and so M4's time scrubber (later) can replay by wall-clock time.
+ */
+export type CreditKind = "create" | "destroy";
+export interface CreditEvent {
+  id: number;
+  kind: CreditKind;
+  startedAt: number;      // performance.now() for animation timing
+  bankId: EntityId;       // bank that writes the entries
+  borrowerId: EntityId;   // "menages" | "entreprises" (or finer later)
+  amountBn: number;
+}
+
+/**
+ * A deposit transfer — existing money moving between two actors.
+ * No balance-sheet creation or destruction: just ownership change.
+ * Used by the life-of-euro narrative (M2) to animate the euro's path
+ * after it's been created.
+ */
+export interface TransferEvent {
+  id: number;
+  startedAt: number;
+  fromId: EntityId;
+  toId: EntityId;
+  amountBn: number;
+  /** Optional tag so the visual can color-code wage/consumption/tax/etc. */
+  tag?: "consumption" | "wages" | "tax" | "transfer" | "other";
+}
+
+export interface SceneState {
   activeEntity: EntityId | null;
   focusMode: FocusMode;
   visibleLayers: Set<LayerId>;
@@ -58,6 +92,33 @@ interface SceneState {
   retireTracer: (id: number) => void;
   setTracerPreset: (presetId: string) => void;
 
+  /* ─── Credit events (M1 atom) ─────────────────────────────────────── */
+  /** Append-only log of every credit event ever fired this session. */
+  creditEvents: CreditEvent[];
+  /** Create a new loan-and-deposit pair on the bank's books. */
+  createCredit: (bankId: EntityId, borrowerId: EntityId, amountBn: number) => void;
+  /** Cancel an equivalent amount — loan repaid, deposit destroyed. */
+  destroyCredit: (bankId: EntityId, borrowerId: EntityId, amountBn: number) => void;
+
+  /* ─── Deposit transfers (M2 plumbing) ─────────────────────────────── */
+  transferEvents: TransferEvent[];
+  transferDeposit: (
+    fromId: EntityId,
+    toId: EntityId,
+    amountBn: number,
+    tag?: TransferEvent["tag"],
+  ) => void;
+
+  /* ─── Life-of-a-euro guided narrative (M2) ────────────────────────── */
+  /** Current step index, or null when the narrative isn't running. */
+  lifeStep: number | null;
+  /** Amount €B used as the hypothetical loan size for the narrative. */
+  lifeAmountBn: number;
+  startLifeOfEuro: () => void;
+  advanceLifeOfEuro: () => void;
+  goToLifeStep: (step: number | null) => void;
+  exitLifeOfEuro: () => void;
+
   /* ─── Guided tour state ───────────────────────────────────────────── */
   /** Current chapter index (0..N-1), or null when the tour isn't running. */
   tourStep: number | null;
@@ -72,6 +133,32 @@ interface SceneState {
 /** Sum of €B across all currently-active tracer events. Drops to 0 between fires. */
 export function selectActiveTracerAmount(s: SceneState): number {
   return s.tracerEvents.reduce((sum, e) => sum + e.amountBn, 0);
+}
+
+/**
+ * Running per-bank balance derived from the event log.
+ * Assets = loans net of repayments. Liabilities = deposits net of destruction.
+ * In the BoE 2014 model these two numbers always move together, so they're
+ * always equal here — displaying them as TWO lines in the T-account is the
+ * point of the visualization.
+ */
+export interface BankBalanceDelta {
+  loansAdded: number;      // asset side
+  depositsAdded: number;   // liability side — should == loansAdded by identity
+  eventCount: number;
+}
+export function selectBankBalance(s: SceneState, bankId: EntityId): BankBalanceDelta {
+  let loansAdded = 0;
+  let depositsAdded = 0;
+  let eventCount = 0;
+  for (const e of s.creditEvents) {
+    if (e.bankId !== bankId) continue;
+    const sign = e.kind === "create" ? 1 : -1;
+    loansAdded += sign * e.amountBn;
+    depositsAdded += sign * e.amountBn;
+    eventCount++;
+  }
+  return { loansAdded, depositsAdded, eventCount };
 }
 
 const ALL_LAYERS: LayerId[] = [
@@ -96,6 +183,8 @@ const ALL_LAYERS: LayerId[] = [
 ];
 
 let _tracerNextId = 1;
+let _creditNextId = 1;
+let _transferNextId = 1;
 
 export const useSceneStore = create<SceneState>((set) => ({
   activeEntity: null,
@@ -161,6 +250,70 @@ export const useSceneStore = create<SceneState>((set) => ({
       tracerEvents: state.tracerEvents.filter((e) => e.id !== id),
     })),
   setTracerPreset: (presetId) => set({ tracerPreset: presetId }),
+
+  /* ─── Credit events (M1 atom) ──────────────────────────────────────── */
+  creditEvents: [],
+  createCredit: (bankId, borrowerId, amountBn) =>
+    set((state) => ({
+      creditEvents: [
+        ...state.creditEvents,
+        {
+          id: _creditNextId++,
+          kind: "create",
+          startedAt: performance.now(),
+          bankId,
+          borrowerId,
+          amountBn,
+        },
+      ],
+    })),
+  destroyCredit: (bankId, borrowerId, amountBn) =>
+    set((state) => ({
+      creditEvents: [
+        ...state.creditEvents,
+        {
+          id: _creditNextId++,
+          kind: "destroy",
+          startedAt: performance.now(),
+          bankId,
+          borrowerId,
+          amountBn,
+        },
+      ],
+    })),
+
+  /* ─── Deposit transfers ────────────────────────────────────────────── */
+  transferEvents: [],
+  transferDeposit: (fromId, toId, amountBn, tag) =>
+    set((state) => ({
+      transferEvents: [
+        ...state.transferEvents,
+        {
+          id: _transferNextId++,
+          startedAt: performance.now(),
+          fromId,
+          toId,
+          amountBn,
+          tag,
+        },
+      ],
+    })),
+
+  /* ─── Life-of-a-euro narrative ─────────────────────────────────────── */
+  lifeStep: null,
+  lifeAmountBn: 1, // €1 B as the hypothetical loan size (visible on KPI scale)
+  startLifeOfEuro: () =>
+    set({
+      lifeStep: 0,
+      creditEvents: [],   // clean slate for the narrative
+      transferEvents: [],
+    }),
+  advanceLifeOfEuro: () =>
+    set((s) => ({
+      lifeStep: s.lifeStep === null ? 0 : s.lifeStep + 1,
+    })),
+  goToLifeStep: (step) => set({ lifeStep: step }),
+  exitLifeOfEuro: () => set({ lifeStep: null }),
 
   /* ─── Guided tour ──────────────────────────────────────────────────── */
   tourStep: null,
