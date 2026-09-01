@@ -7,7 +7,7 @@
       "Banco de España — Encuesta Financiera de las Familias",
       "Eurostat — HFCS (Household Finance and Consumption Survey)"
     ],
-    "last_updated": "2026-08-31",
+    "last_updated": "2026-09-01",
     "auto_refresh": true
   },
   "aggregate": {
@@ -40,7 +40,7 @@
   },
   "debt_to_income_pct": 86.6,
   "unemployment_rate_pct": {
-    "rate_pct": 10.1,
-    "as_of": "2026-06"
+    "rate_pct": 10,
+    "as_of": "2026-07"
   }
 }
